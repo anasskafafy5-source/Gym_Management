@@ -4,7 +4,7 @@
 
 ### A Complete Gym Management System
 
-A modern, responsive gym management platform built to manage members, trainers, subscriptions, transactions, expenses, accounts, and business performance from one place.
+A modern, responsive gym management platform built to manage members, captains, subscriptions, transactions, expenses, accounts, and business performance from one place.
 
 **This is not a tutorial project. The system was originally developed for a real gym based on actual business requirements and daily operational workflows.**
 
@@ -32,15 +32,15 @@ You can explore the complete system using the following demo account:
 
 ## 📖 Project Overview
 
-**Velora** is a full gym management system that transforms daily gym operations into one organized digital workflow.
+**Velora** is a complete gym management system that transforms daily gym operations into one organized digital workflow.
 
 The system was originally requested by a real client who needed an easier way to manage:
 
 - Gym members and their subscriptions
-- Trainers and their assigned members
+- Captains and their assigned members
 - Subscription renewals and freezing periods
 - Member payments and outstanding balances
-- Trainer and gym financial shares
+- Captain and gym financial shares
 - Income, expenses, and actual profit
 - User accounts and system access
 - Gym performance through statistics and charts
@@ -58,10 +58,10 @@ Managing a gym manually can create several problems:
 - Difficulty tracking subscription expiration dates
 - Losing member payment information
 - Forgetting frozen subscriptions
-- Incorrectly calculating trainer and gym shares
+- Incorrectly calculating captain and gym shares
 - Mixing income with operational expenses
 - Difficulty identifying the gym's actual profit
-- Scattered member and trainer information
+- Scattered member and captain information
 - No clear overview of business performance
 - Limited control over staff accounts and system access
 
@@ -81,7 +81,7 @@ Gym staff can:
 - Edit existing member information
 - View complete member details
 - Store phone numbers, age, notes, and personal information
-- Assign each member to a trainer
+- Assign each member to a captain
 - Set the subscription price
 - Record paid and remaining amounts
 - Set subscription start and expiration dates
@@ -139,26 +139,26 @@ Supported statuses include:
 - Subscriptions expiring soon
 - Frozen subscriptions
 
-This allows the gym staff to quickly identify members who need follow-up or renewal.
+This allows gym staff to quickly identify members who need follow-up or renewal.
 
 ---
 
-## 🏋️ Trainer Management
+## 🏋️ Captain Management
 
-Velora includes a dedicated system for managing trainers.
+Velora includes a dedicated system for managing captains.
 
 Staff can:
 
-- Add new trainers
-- Edit trainer information
-- View trainer details
-- Assign members to trainers
-- View members assigned to each trainer
-- Track trainer-related transactions
-- Calculate the trainer's financial share
-- Review trainer statistics and performance
+- Add new captains
+- Edit captain information
+- View captain details
+- Assign members to captains
+- View members assigned to each captain
+- Track captain-related transactions
+- Calculate the captain's financial share
+- Review captain statistics and performance
 
-This provides a clear connection between trainers, members, and financial records.
+This provides a clear connection between captains, members, and financial records.
 
 ---
 
@@ -176,29 +176,29 @@ The transaction system supports:
 
 - Subscription payments
 - Member payments
-- Trainer-related payments
+- Captain-related payments
 - Gym income
 - Operational expenses
 - Payment notes
 - Transaction dates
 - Income and expense directions
-- Connections between members, trainers, and transactions
+- Connections between members, captains, and transactions
 
 This creates a clear financial history for the gym.
 
 ---
 
-## 🤝 Gym and Trainer Share Calculation
+## 🤝 Gym and Captain Share Calculation
 
-Some member payments must be divided between the gym and the trainer.
+Some member payments must be divided between the gym and the captain.
 
 For these transactions, the system records and calculates:
 
 - Total amount paid
-- Trainer's share
+- Captain's share
 - Gym's share
 - Related member
-- Related trainer
+- Related captain
 - Transaction date
 - Additional notes
 
@@ -249,7 +249,7 @@ The dashboard displays:
 - Total expenses
 - Outstanding payments
 - Total number of members
-- Total number of trainers
+- Total number of captains
 - Expired subscriptions
 - Subscriptions expiring soon
 
@@ -382,7 +382,7 @@ Velora Gym Management System
 │   ├── Expenses
 │   ├── Outstanding payments
 │   ├── Member statistics
-│   ├── Trainer statistics
+│   ├── Captain statistics
 │   ├── Subscription insights
 │   └── Interactive charts
 │
@@ -395,10 +395,10 @@ Velora Gym Management System
 │   ├── Payment tracking
 │   └── Subscription status
 │
-├── Trainers
-│   ├── Add trainers
-│   ├── Edit trainers
-│   ├── Trainer details
+├── Captains
+│   ├── Add captains
+│   ├── Edit captains
+│   ├── Captain details
 │   ├── Assigned members
 │   └── Financial shares
 │
@@ -407,7 +407,7 @@ Velora Gym Management System
 │   ├── Expenses
 │   ├── Member payments
 │   ├── Gym share
-│   └── Trainer share
+│   └── Captain share
 │
 ├── Accounts
 │   ├── Authentication
@@ -442,14 +442,14 @@ Supabase is used as the backend of the application.
 The system stores and manages:
 
 - Members
-- Trainers
+- Captains
 - Transactions
 - Sessions
 - Settings
 - User accounts
 - Authentication data
 
-The database relationships keep members, trainers, payments, and transactions connected.
+The database relationships keep members, captains, payments, and transactions connected.
 
 The project also uses database views and functions to calculate dashboard statistics and prepare business data efficiently.
 
@@ -484,10 +484,10 @@ Velora helps the gym owner and staff:
 - Reduce subscription tracking mistakes
 - Follow up on expired subscriptions
 - Track remaining member payments
-- Calculate gym and trainer shares accurately
+- Calculate gym and captain shares accurately
 - Record income and expenses
 - Understand actual gym profitability
-- Manage trainers and their members
+- Manage captains and their members
 - Review business performance through charts
 - Secure private gym data
 - Access the system from different devices
@@ -503,7 +503,7 @@ It includes:
 - Real business requirements
 - Real subscription workflows
 - Real accounting logic
-- Connected members, trainers, and transactions
+- Connected members, captains, and transactions
 - Automatic financial calculations
 - Authentication and account management
 - Responsive Arabic interface
