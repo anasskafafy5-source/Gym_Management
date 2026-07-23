@@ -1,0 +1,508 @@
+[1]captain-states::DROP VIEW IF EXISTS captain_stats;
+
+CREATE VIEW captain_stats AS
+SELECT
+    c.id,
+    c.full_name,
+    c.phone,
+    c.subscription_price,
+    c.notes,
+
+    COALESCE(m.members_count, 0) AS members_count,
+
+    COALESCE(t.total_revenue, 0) AS total_revenue,
+    COALESCE(t.gym_share, 0) AS gym_share,
+    COALESCE(t.captain_share, 0) AS captain_share,
+
+    s.percentage AS gym_percentage,
+    (100 - s.percentage) AS captain_percentage
+
+FROM captains c
+CROSS JOIN settings s
+LEFT JOIN (
+    SELECT
+        captain_id,
+        COUNT(*) AS members_count
+    FROM members
+    GROUP BY captain_id
+) m ON m.captain_id = c.id
+LEFT JOIN (
+    SELECT
+        captain_id,
+        SUM(amount_paid) AS total_revenue,
+        SUM(gym_amount) AS gym_share,
+        SUM(captain_amount) AS captain_share
+    FROM transactions
+    WHERE direction = 'income'
+      AND paid_at >= CURRENT_DATE - INTERVAL '30 days'
+    GROUP BY captain_id
+) t ON t.captain_id = c.id;
+
+[2] member
+
+CREATE VIEW members_view AS
+SELECT
+    m.id,
+    m.full_name,
+    m.captain_name,
+    m.captain_id,
+    m.phone,
+    m.age,
+    m.notes,
+
+    m.subscription_price,
+    m.paid_amount,
+    m.remaining_amount,
+
+    m.subscription_start_date,
+    m.subscription_end_date,
+    m.last_payment_date,
+
+    m.is_frozen,
+    m.frozen_days,
+    m.freeze_reason,
+
+    -- عدد الأيام المتبقية
+    (m.subscription_end_date - CURRENT_DATE) AS days_left,
+
+    -- هل عليه فلوس
+    (m.remaining_amount > 0) AS has_remaining,
+
+    -- حالة الاشتراك
+    CASE
+        WHEN m.is_frozen THEN 'frozen'
+
+        WHEN m.subscription_end_date <= CURRENT_DATE THEN 'expired'
+
+        WHEN m.subscription_end_date <=
+            CURRENT_DATE + (
+                SELECT expiring_soon_days
+                FROM settings
+                LIMIT 1
+            )
+        THEN 'expiring'
+
+        ELSE 'active'
+    END AS subscription_status,
+
+    -- النص العربي
+    CASE
+        WHEN m.is_frozen THEN 'مجمد'
+
+        WHEN m.subscription_end_date <= CURRENT_DATE THEN 'منتهي'
+
+        WHEN m.subscription_end_date <=
+            CURRENT_DATE + (
+                SELECT expiring_soon_days
+                FROM settings
+                LIMIT 1
+            )
+        THEN 'قرب ينتهي'
+
+        ELSE 'نشط'
+    END AS status_text,
+
+    -- اللون
+    CASE
+        WHEN m.is_frozen THEN 'blue'
+
+        WHEN m.subscription_end_date <= CURRENT_DATE THEN 'red'
+
+        WHEN m.subscription_end_date <=
+            CURRENT_DATE + (
+                SELECT expiring_soon_days
+                FROM settings
+                LIMIT 1
+            )
+        THEN 'yellow'
+
+        ELSE 'green'
+    END AS status_color
+
+FROM members m;
+
+
+
+[3] for transactions stat card
+DROP FUNCTION IF EXISTS get_transaction_stats(text);
+
+CREATE FUNCTION get_transaction_stats(period_days text)
+RETURNS TABLE (
+    income real,
+    expense real,
+    gym_income real,
+    captains_income real,
+    profit real,
+    transactions_count bigint
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    from_date timestamp;
+BEGIN
+
+    IF period_days = 'all' THEN
+
+        RETURN QUERY
+        SELECT
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN amount_paid
+                ELSE 0
+            END), 0)::real AS income,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'expense' THEN amount_paid
+                ELSE 0
+            END), 0)::real AS expense,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN gym_amount
+                ELSE 0
+            END), 0)::real AS gym_income,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN captain_amount
+                ELSE 0
+            END), 0)::real AS captains_income,
+
+            (
+                COALESCE(SUM(CASE
+                    WHEN direction = 'income' THEN gym_amount
+                    ELSE 0
+                END), 0)
+                -
+                COALESCE(SUM(CASE
+                    WHEN direction = 'expense' THEN amount_paid
+                    ELSE 0
+                END), 0)
+            )::real AS profit,
+
+            COUNT(*)
+
+        FROM transactions;
+
+    ELSE
+
+        from_date := CURRENT_DATE - (period_days::int - 1);
+
+        RETURN QUERY
+        SELECT
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN amount_paid
+                ELSE 0
+            END), 0)::real AS income,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'expense' THEN amount_paid
+                ELSE 0
+            END), 0)::real AS expense,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN gym_amount
+                ELSE 0
+            END), 0)::real AS gym_income,
+
+            COALESCE(SUM(CASE
+                WHEN direction = 'income' THEN captain_amount
+                ELSE 0
+            END), 0)::real AS captains_income,
+
+            (
+                COALESCE(SUM(CASE
+                    WHEN direction = 'income' THEN gym_amount
+                    ELSE 0
+                END), 0)
+                -
+                COALESCE(SUM(CASE
+                    WHEN direction = 'expense' THEN amount_paid
+                    ELSE 0
+                END), 0)
+            )::real AS profit,
+
+            COUNT(*)
+
+        FROM transactions
+        WHERE paid_at >= from_date;
+
+    END IF;
+
+END;
+$$;
+
+
+[3] Dashboard stats card
+
+DROP FUNCTION IF EXISTS get_dashboard_stats(text);
+
+CREATE OR REPLACE FUNCTION get_dashboard_stats(period text)
+RETURNS TABLE (
+    total_revenue DOUBLE PRECISION,
+    gym_profit DOUBLE PRECISION,
+    expenses DOUBLE PRECISION,
+    outstanding_payments DOUBLE PRECISION,
+    members_count BIGINT,
+    captains_count BIGINT,
+    expired_sub BIGINT,
+    expiring_soon BIGINT
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    start_date DATE;
+    soon_days INTEGER;
+BEGIN
+
+    -- تحديد بداية الفترة
+    CASE period
+        WHEN '1' THEN
+            start_date := CURRENT_DATE;
+        WHEN '7' THEN
+            start_date := CURRENT_DATE - 6;
+        WHEN '30' THEN
+            start_date := CURRENT_DATE - 29;
+        WHEN '90' THEN
+            start_date := CURRENT_DATE - 89;
+        ELSE
+            start_date := NULL;
+    END CASE;
+
+    -- عدد الأيام قبل انتهاء الاشتراك
+    SELECT expiring_soon_days
+    INTO soon_days
+    FROM settings
+    LIMIT 1;
+
+    RETURN QUERY
+    SELECT
+
+        -------------------------------------------------
+        -- Total Revenue
+        -------------------------------------------------
+        COALESCE(
+            (
+                SELECT SUM(amount_paid)
+                FROM transactions
+                WHERE direction = 'income'
+                  AND (
+                        start_date IS NULL
+                        OR paid_at::date >= start_date
+                  )
+            ),
+            0
+        )::DOUBLE PRECISION,
+
+        -------------------------------------------------
+        -- Gym Profit
+        -------------------------------------------------
+        (
+            COALESCE(
+                (
+                    SELECT SUM(gym_amount)
+                    FROM transactions
+                    WHERE direction = 'income'
+                      AND (
+                            start_date IS NULL
+                            OR paid_at::date >= start_date
+                      )
+                ),
+                0
+            )
+            -
+            COALESCE(
+                (
+                    SELECT SUM(amount_paid)
+                    FROM transactions
+                    WHERE direction = 'expense'
+                      AND (
+                            start_date IS NULL
+                            OR paid_at::date >= start_date
+                      )
+                ),
+                0
+            )
+        )::DOUBLE PRECISION,
+
+        -------------------------------------------------
+        -- Expenses
+        -------------------------------------------------
+        COALESCE(
+            (
+                SELECT SUM(amount_paid)
+                FROM transactions
+                WHERE direction = 'expense'
+                  AND (
+                        start_date IS NULL
+                        OR paid_at::date >= start_date
+                  )
+            ),
+            0
+        )::DOUBLE PRECISION,
+
+        -------------------------------------------------
+        -- Outstanding Payments
+        -------------------------------------------------
+        COALESCE(
+            (
+                SELECT SUM(remaining_amount)
+                FROM members
+            ),
+            0
+        )::DOUBLE PRECISION,
+
+        -------------------------------------------------
+        -- Members Count
+        -------------------------------------------------
+        (
+            SELECT COUNT(*)
+            FROM members
+        ),
+
+        -------------------------------------------------
+        -- Captains Count
+        -------------------------------------------------
+        (
+            SELECT COUNT(*)
+            FROM captains
+        ),
+
+        -------------------------------------------------
+        -- Expired Subscriptions
+        -------------------------------------------------
+        (
+            SELECT COUNT(*)
+            FROM members
+            WHERE subscription_end_date <= CURRENT_DATE
+        ),
+
+        -------------------------------------------------
+        -- Expiring Soon
+        -------------------------------------------------
+        (
+            SELECT COUNT(*)
+            FROM members
+            WHERE subscription_end_date > CURRENT_DATE
+              AND subscription_end_date <= CURRENT_DATE + soon_days
+        );
+
+END;
+$$;
+
+
+// get dashboard get_dashboard_chart
+
+CREATE OR REPLACE FUNCTION get_dashboard_chart(
+    year_input integer DEFAULT EXTRACT(YEAR FROM CURRENT_DATE)::integer
+)
+RETURNS TABLE (
+    month integer,
+    income real,
+    expense real,
+    captains_amount real,
+    net_profit real
+)
+LANGUAGE sql
+AS $$
+WITH months AS (
+    SELECT generate_series(1, 12) AS month
+)
+
+SELECT
+    m.month,
+
+    COALESCE(
+        SUM(t.amount_paid)
+        FILTER (WHERE t.direction = 'income'),
+        0
+    )::real AS income,
+
+    COALESCE(
+        SUM(t.amount_paid)
+        FILTER (WHERE t.direction = 'expense'),
+        0
+    )::real AS expense,
+
+    COALESCE(
+        SUM(t.captain_amount),
+        0
+    )::real AS captains_amount,
+
+    (
+        COALESCE(SUM(t.gym_amount), 0)
+        -
+        COALESCE(
+            SUM(t.amount_paid)
+            FILTER (WHERE t.direction = 'expense'),
+            0
+        )
+    )::real AS net_profit
+
+FROM months m
+
+LEFT JOIN transactions t
+    ON EXTRACT(YEAR FROM t.paid_at) = year_input
+   AND EXTRACT(MONTH FROM t.paid_at) = m.month
+
+GROUP BY m.month
+ORDER BY m.month;
+$$;
+
+
+[payments chart] 
+
+DROP FUNCTION IF EXISTS get_members_payment_status();
+
+CREATE FUNCTION get_members_payment_status()
+RETURNS TABLE (
+    total_members bigint,
+    paid_count bigint,
+    due_count bigint,
+    expired_count bigint
+)
+LANGUAGE sql
+STABLE
+AS $$
+SELECT
+    COUNT(*) AS total_members,
+
+    COUNT(*) FILTER (
+        WHERE remaining_amount = 0
+          AND subscription_end_date > CURRENT_DATE
+    ) AS paid_count,
+
+    COUNT(*) FILTER (
+        WHERE remaining_amount > 0
+    ) AS due_count,
+
+    COUNT(*) FILTER (
+        WHERE remaining_amount = 0
+          AND subscription_end_date <= CURRENT_DATE
+    ) AS expired_count
+
+FROM members;
+$$;
+
+[4] indexes
+
+-- Dashboard
+CREATE INDEX IF NOT EXISTS idx_transactions_direction_paid_at
+ON transactions(direction, paid_at);
+
+-- Member Transactions
+CREATE INDEX IF NOT EXISTS idx_transactions_member_paid_at
+ON transactions(member_id, paid_at DESC);
+
+-- Captain Transactions
+CREATE INDEX IF NOT EXISTS idx_transactions_captain_paid_at
+ON transactions(captain_id, paid_at DESC);
+
+-- Members
+CREATE INDEX IF NOT EXISTS idx_members_subscription_end
+ON members(subscription_end_date);
+
+CREATE INDEX IF NOT EXISTS idx_members_captain
+ON members(captain_id);
+
+
+-- Sessions
+CREATE INDEX IF NOT EXISTS idx_sessions_captain_date
+ON sessions(captain_id, date);
