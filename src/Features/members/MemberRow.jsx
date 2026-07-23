@@ -27,11 +27,8 @@ function MemberRow({ member, index }) {
       </td>
 
       {/* Name */}
-      <td className="max-w-44 px-2 py-1.5">
-        <p
-          className="truncate font-medium text-foreground"
-          title={member.full_name}
-        >
+      <td className="w-52 px-2 py-1.5">
+        <p className="break-words whitespace-normal font-medium text-foreground">
           {member.full_name}
         </p>
       </td>

@@ -19,7 +19,7 @@ function MembersTable({membersViews , loading , error}) {
             <tr className="border-b border-border text-xs font-semibold text-muted">
               <th className="w-10 px-2 py-2 text-center">#</th>
 
-              <th className="px-2 py-2 text-right">الاسم</th>
+              <th className="w-52 px-2 py-2 text-right">الاسم</th>
 
               <th className="w-14 px-1 py-2 text-center">ID</th>
 
