@@ -63,8 +63,8 @@ function DashboardStatsContainer() {
         icon={<FaUsers />}
         value={members_count}
         label="عدد الاعضاء "
-        iconColor="text-orange-600"
-        iconBg="bg-orange-100"
+        iconColor="text-primary"
+        iconBg="bg-primary/15"
       />
       <StatCard
         icon={<FaAward />}
@@ -84,8 +84,8 @@ function DashboardStatsContainer() {
         icon={<RxValueNone />}
         value={expiring_soon}
         label="الاشتراكات قريبه الانتهاء "
-        iconColor="text-stone-600"
-        iconBg="bg-stone-100"
+        iconColor="text-muted"
+        iconBg="bg-background"
       />
     </div>
   );

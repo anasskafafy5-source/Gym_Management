@@ -13,7 +13,7 @@ function Sort({ options }) {
   return (
     <div className="mb-3 px-1 py-1.5">
       <select
-        className="cursor-pointer rounded-xl border-2 border-orange-500 bg-stone-100 px-1.5 py-1.5 text-[14px] font-semibold text-stone-800 shadow outline-0 duration-300 hover:bg-stone-300"
+        className="cursor-pointer rounded-xl border-2 border-primary bg-background px-1.5 py-1.5 text-[14px] font-semibold text-foreground shadow outline-0 duration-300 hover:bg-border"
         onChange={(e) => handleChange(e.target.value)}
         value={sortValue}
       >

@@ -9,7 +9,7 @@ function MemberActionBar({ member, inDetailsPage = false }) {
   return (
     <div className="pt-4">
       {inDetailsPage && (
-        <h3 className="my-4 text-[18px] font-bold text-slate-600">الإجراءات</h3>
+        <h3 className="my-4 text-[18px] font-bold text-foreground">الإجراءات</h3>
       )}
 
       <div className="flex items-center gap-1">

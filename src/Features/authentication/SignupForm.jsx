@@ -27,20 +27,20 @@ export default function SignupForm({ onClose }) {
   return (
     <div
       dir="rtl"
-      className="flex min-h-screen items-center justify-center bg-gradient-to-br from-orange-50 via-white to-orange-100 px-4 py-8"
+      className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-surface to-primary/10 px-4 py-8"
     >
-      <div className="w-full max-w-md rounded-3xl border border-orange-100 bg-white p-8 shadow-2xl">
+      <div className="w-full max-w-md rounded-3xl border border-border bg-surface p-8 text-foreground shadow-2xl">
         {/* Header */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-orange-500 shadow-lg shadow-orange-200">
+          <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-3xl bg-primary shadow-lg shadow-primary/20">
             <UserPlus size={38} className="text-white" />
           </div>
 
-          <h1 className="text-3xl font-extrabold text-gray-800">
+          <h1 className="text-3xl font-extrabold text-foreground">
             إنشاء حساب جديد
           </h1>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-muted">
             أدخل البيانات التالية لإنشاء حساب جديد.
           </p>
         </div>
@@ -48,23 +48,23 @@ export default function SignupForm({ onClose }) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Username */}
           <div>
-            <label className="mb-2 block font-semibold text-gray-700">
+            <label className="mb-2 block font-semibold text-foreground">
               اسم المستخدم
             </label>
 
             <div className="relative">
               <User
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-orange-500"
+                className="absolute top-1/2 right-4 -translate-y-1/2 text-primary"
                 size={20}
               />
 
               <input
                 type="text"
                 placeholder="أدخل اسم المستخدم"
-                className={`w-full rounded-xl border bg-orange-50 py-3 pr-12 pl-4 text-right transition-all duration-200 outline-none ${
+                className={`w-full rounded-xl border bg-primary/10 py-3 pr-12 pl-4 text-right text-foreground transition-all duration-200 outline-none placeholder:text-muted ${
                   errors.username
                     ? "border-red-500"
-                    : "border-orange-200 focus:border-orange-500 focus:bg-white"
+                    : "border-primary/30 focus:border-primary focus:bg-surface"
                 }`}
                 {...register("username", {
                   required: "اسم المستخدم مطلوب",
@@ -85,23 +85,23 @@ export default function SignupForm({ onClose }) {
 
           {/* Email */}
           <div>
-            <label className="mb-2 block font-semibold text-gray-700">
+            <label className="mb-2 block font-semibold text-foreground">
               البريد الإلكتروني
             </label>
 
             <div className="relative">
               <Mail
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-orange-500"
+                className="absolute top-1/2 right-4 -translate-y-1/2 text-primary"
                 size={20}
               />
 
               <input
                 type="email"
                 placeholder="example@gmail.com"
-                className={`w-full rounded-xl border bg-orange-50 py-3 pr-12 pl-4 text-right transition-all duration-200 outline-none ${
+                className={`w-full rounded-xl border bg-primary/10 py-3 pr-12 pl-4 text-right text-foreground transition-all duration-200 outline-none placeholder:text-muted ${
                   errors.email
                     ? "border-red-500"
-                    : "border-orange-200 focus:border-orange-500 focus:bg-white"
+                    : "border-primary/30 focus:border-primary focus:bg-surface"
                 }`}
                 {...register("email", {
                   required: "البريد الإلكتروني مطلوب",
@@ -122,23 +122,23 @@ export default function SignupForm({ onClose }) {
 
           {/* Password */}
           <div>
-            <label className="mb-2 block font-semibold text-gray-700">
+            <label className="mb-2 block font-semibold text-foreground">
               كلمة المرور
             </label>
 
             <div className="relative">
               <Lock
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-orange-500"
+                className="absolute top-1/2 right-4 -translate-y-1/2 text-primary"
                 size={20}
               />
 
               <input
                 type="password"
                 placeholder="********"
-                className={`w-full rounded-xl border bg-orange-50 py-3 pr-12 pl-4 text-right transition-all duration-200 outline-none ${
+                className={`w-full rounded-xl border bg-primary/10 py-3 pr-12 pl-4 text-right text-foreground transition-all duration-200 outline-none placeholder:text-muted ${
                   errors.password
                     ? "border-red-500"
-                    : "border-orange-200 focus:border-orange-500 focus:bg-white"
+                    : "border-primary/30 focus:border-primary focus:bg-surface"
                 }`}
                 {...register("password", {
                   required: "كلمة المرور مطلوبة",
@@ -159,23 +159,23 @@ export default function SignupForm({ onClose }) {
 
           {/* Confirm Password */}
           <div>
-            <label className="mb-2 block font-semibold text-gray-700">
+            <label className="mb-2 block font-semibold text-foreground">
               تأكيد كلمة المرور
             </label>
 
             <div className="relative">
               <Lock
-                className="absolute top-1/2 right-4 -translate-y-1/2 text-orange-500"
+                className="absolute top-1/2 right-4 -translate-y-1/2 text-primary"
                 size={20}
               />
 
               <input
                 type="password"
                 placeholder="********"
-                className={`w-full rounded-xl border bg-orange-50 py-3 pr-12 pl-4 text-right transition-all duration-200 outline-none ${
+                className={`w-full rounded-xl border bg-primary/10 py-3 pr-12 pl-4 text-right text-foreground transition-all duration-200 outline-none placeholder:text-muted ${
                   errors.confirmPassword
                     ? "border-red-500"
-                    : "border-orange-200 focus:border-orange-500 focus:bg-white"
+                    : "border-primary/30 focus:border-primary focus:bg-surface"
                 }`}
                 {...register("confirmPassword", {
                   required: "يرجى تأكيد كلمة المرور",
@@ -196,7 +196,7 @@ export default function SignupForm({ onClose }) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="mt-2 w-full rounded-xl bg-orange-500 py-3 font-bold text-white transition-all duration-300 hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-2 w-full rounded-xl bg-primary py-3 font-bold text-white transition-all duration-300 hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isPending ? "جارٍ إنشاء الحساب..." : "إنشاء الحساب"}
           </button>

@@ -35,7 +35,7 @@ function Search({ placeHolder, field }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 rounded-xl bg-white px-2 py-4"
+      className="flex flex-col gap-3 rounded-xl bg-surface px-2 py-4"
     >
       <input
         value={searchValue}
@@ -44,7 +44,7 @@ function Search({ placeHolder, field }) {
         }}
         type="text"
         placeholder={placeHolder}
-        className="h-11 rounded-2xl border-orange-500 bg-stone-300 px-3 py-2 ring-orange-500 outline-0 duration-200 focus:ring-1 sm:h-13"
+        className="h-11 rounded-2xl border-primary bg-background px-3 py-2 text-foreground ring-primary outline-0 duration-200 placeholder:text-muted focus:ring-1 sm:h-13"
       />
       <div className="flex items-center justify-between">
         <Button type={"submit"} design={"primary"}>

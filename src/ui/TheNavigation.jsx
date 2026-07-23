@@ -43,7 +43,7 @@ const links = [
 
 export default function TheNavigation() {
   return (
-    <ul className="mt-3.5 flex flex-col gap-3 px-1.5 py-1 text-[13px] text-stone-800">
+    <ul className="mt-3.5 flex flex-col gap-3 px-1.5 py-1 text-[13px] text-foreground">
       {links.map((link) => {
         const Icon = link.icon;
 
@@ -80,8 +80,8 @@ function NavLin({ children, to }) {
       className={({ isActive }) =>
         `flex w-full items-center gap-2 rounded-2xl px-3 py-2 duration-300 ${
           isActive
-            ? "bg-orange-500 text-stone-50"
-            : "hover:bg-orange-200 hover:text-orange-500"
+            ? "bg-primary text-white"
+            : "hover:bg-primary/15 hover:text-primary"
         }`
       }
     >

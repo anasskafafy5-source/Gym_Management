@@ -29,7 +29,7 @@ function CaptainDetArea() {
       {" "}
       <CaptainInfoCart captain={captain} />
       {/* Heading for member in captian */}
-      <div className="mt-4 mb-2 ml-1 flex items-center justify-between rounded-3xl bg-white px-3 py-3 shadow-sm">
+      <div className="mt-4 mb-2 ml-1 flex items-center justify-between rounded-3xl bg-surface px-3 py-3 text-foreground shadow-sm">
         <h4 className="text-xl font-bold">
           أعضاء المدرب ({captain?.members_count})
         </h4>

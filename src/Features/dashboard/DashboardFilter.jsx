@@ -2,7 +2,7 @@ import Filter from "../../ui/Filter";
 
 function DashboardFilter() {
   return (
-    <div className="my-5 rounded-xl bg-white px-2.5 py-1.5">
+    <div className="my-5 rounded-xl bg-surface px-2.5 py-1.5">
       <Filter
         defaultValue={["period", "30"]}
         nameFilter="period"

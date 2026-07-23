@@ -58,7 +58,10 @@ function MembersMainForm({ onClose, member }) {
   if (isPending || isUpdating) return <Spinner />;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 p-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-5 p-6 text-foreground"
+    >
       <h2 className="text-2xl font-bold">
         {isEditSession ? "تعديل بيانات العضو" : "إضافه عضو جديد"}
       </h2>
@@ -70,7 +73,7 @@ function MembersMainForm({ onClose, member }) {
         <input
           type="text"
           placeholder="اسم العضو"
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("full_name", {
             required: "الاسم مطلوب",
           })}
@@ -85,7 +88,7 @@ function MembersMainForm({ onClose, member }) {
       <div className="space-y-2">
         <label className="block text-sm font-medium">المدرب</label>
         <select
-          className="w-full rounded-lg border border-stone-300 bg-white px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none focus:border-primary"
           {...register("captain", {
             required: "اختيار المدرب مطلوب",
           })}
@@ -99,7 +102,7 @@ function MembersMainForm({ onClose, member }) {
             </option>
           ))}
         </select>
-        <p className="mt-1 w-fit rounded-sm p-1 text-sm font-semibold text-orange-500">
+        <p className="mt-1 w-fit rounded-sm p-1 text-sm font-semibold text-primary">
           عليك التاكد من اختيار المدرب الصحيح
         </p>
         {errors.captain && (
@@ -114,7 +117,7 @@ function MembersMainForm({ onClose, member }) {
         <input
           type="tel"
           placeholder="01xxxxxxxxx"
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("phone", {
             pattern: {
               value: /^01[0125][0-9]{8}$/,
@@ -135,7 +138,7 @@ function MembersMainForm({ onClose, member }) {
         <input
           type="number"
           placeholder="العمر"
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("age", {
             valueAsNumber: true,
             min: {
@@ -161,7 +164,7 @@ function MembersMainForm({ onClose, member }) {
         <input
           type="number"
           placeholder="سعر الاشتراك"
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("subscription_price", {
             required: "سعر الاشتراك مطلوب",
             valueAsNumber: true,
@@ -219,7 +222,7 @@ function MembersMainForm({ onClose, member }) {
         <input
           type="number"
           placeholder="المبلغ المدفوع"
-          className={`${isEditSession && "cursor-no-drop"} w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500 `}
+          className={`${isEditSession && "cursor-no-drop"} w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary disabled:bg-background disabled:text-muted`}
           disabled={isEditSession}
           {...register("paid_amount", {
             required: "المبلغ المدفوع!!",
@@ -237,7 +240,7 @@ function MembersMainForm({ onClose, member }) {
 
       {/* if in edit */}
       {isEditSession && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
           ⚠️ لا يمكن تعديل سعر الاشتراك أو المبلغ المدفوع من هنا، للحفاظ على
           السجل المالي. استخدم عمليات الدفع أو التجديد لتسجيل أي حركة مالية.
         </div>
@@ -245,7 +248,7 @@ function MembersMainForm({ onClose, member }) {
 
       {/* feed back */}
       {remaining > 0 && (
-        <p className="text-sm font-medium text-orange-600">
+        <p className="text-sm font-medium text-primary-hover">
           المتبقي: {Math.max(remaining, 0)} جنيه
         </p>
       )}
@@ -257,13 +260,13 @@ function MembersMainForm({ onClose, member }) {
         <textarea
           rows={4}
           placeholder="اكتب أي ملاحظات..."
-          className="w-full resize-none rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full resize-none rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("notes")}
         />
       </div>
 
       {/* الأزرار */}
-      <div className="flex justify-end gap-3 border-t pt-5">
+      <div className="flex justify-end gap-3 border-t border-border pt-5">
         <Button onClick={onClose} type={"button"} design="secondary">
           الغاء
         </Button>

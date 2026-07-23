@@ -14,7 +14,7 @@ function AppLayout() {
       <Sidebar />
       <Suspense fallback={<Spinner />}>
         <main
-          className={`mt-navbar sm:mr-sidebar box-border bg-stone-50 px-3 py-3 sm:px-3.5 sm:py-4`}
+          className={`mt-navbar sm:mr-sidebar box-border bg-background px-3 py-3 text-foreground sm:px-3.5 sm:py-4`}
           onClick={() => {
             if (window.innerWidth < 640) {
               setIsOpenSide(false);

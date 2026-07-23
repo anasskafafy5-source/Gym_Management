@@ -16,7 +16,7 @@ function DatePickerInput({
   return (
     <div className="w-full">
       {label && (
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           {label}
         </label>
       )}
@@ -36,14 +36,14 @@ function DatePickerInput({
                 dateFormat="dd/MM/yyyy"
                 minDate={minDate}
                 maxDate={maxDate}
-                className={`w-full rounded-xl border bg-white py-3 pr-12 pl-4 text-sm transition-all duration-200 outline-none ${
+                className={`w-full rounded-xl border bg-surface py-3 pr-12 pl-4 text-sm text-foreground transition-all duration-200 outline-none placeholder:text-muted ${
                   error
                     ? "border-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:border-orange-500"
+                    : "border-border focus:border-primary"
                 }`}
               />
 
-              <FaRegCalendarAlt className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-orange-500" />
+              <FaRegCalendarAlt className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-primary" />
             </div>
 
             {error && (

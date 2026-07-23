@@ -1,6 +1,7 @@
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { useSideBar } from "../context/SidebarContext";
+import DarkModeToggle from "./DarkModeToggle";
 
 const getPageTitle = (pathname) => {
   // 1. تنظيف الرابط: إزالة الشرطة المائلة من البداية والنهاية وتحويله لـ lowercase وتحويل الـ Backslash لو وجد
@@ -46,14 +47,17 @@ function Navbar() {
 
   return (
     <nav
-      className={`h-navbar fixed top-0 right-0 flex w-full items-center justify-between gap-3 border-b border-stone-300 bg-white px-3 py-2 duration-300 sm:justify-start z-[100]` }
+      className={`h-navbar fixed top-0 right-0 z-[100] flex w-full items-center justify-between gap-3 border-b border-border bg-surface px-3 py-2 text-foreground duration-300 sm:justify-start`}
     >
       <img className="block w-[25px]" src="default-user.jpg" alt="user_photo" />
       <h4 className="font text-[18px] font-bold">{currentPage}</h4>
-      <MdOutlineLibraryBooks
-        className={`cursor-pointer hover:text-orange-500 sm:hidden ${isOpenSide ? "text-orange-500" : ""}`}
-        onClick={() => setIsOpenSide((c) => !c)}
-      />
+      <div className="flex items-center gap-2">
+        <DarkModeToggle />
+        <MdOutlineLibraryBooks
+          className={`cursor-pointer hover:text-primary sm:hidden ${isOpenSide ? "text-primary" : ""}`}
+          onClick={() => setIsOpenSide((c) => !c)}
+        />
+      </div>
     </nav>
   );
 }

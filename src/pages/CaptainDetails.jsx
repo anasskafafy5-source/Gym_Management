@@ -8,7 +8,7 @@ function CaptainDetails() {
         <BackButton />
         <div>
           <h3 className="text-[18px] font-bold">تفاصيل المدرب </h3>
-          <span className="text-xs font-semibold text-stone-400">
+          <span className="text-xs font-semibold text-muted">
             بيانات المدرب وقائمة الأعضاء
           </span>
         </div>

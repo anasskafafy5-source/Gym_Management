@@ -26,17 +26,17 @@ function Pagination({ count, pageSize = PAGE_SIZE_TRANSACTIONS }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className="my-5 mb-1 flex w-full items-center justify-between rounded-xl bg-white px-3 py-5">
-      <p className="text-sm text-gray-500">
+    <div className="my-5 mb-1 flex w-full items-center justify-between rounded-xl bg-surface px-3 py-5 text-foreground">
+      <p className="text-sm text-muted">
         عرض من{" "}
-        <span className="font-semibold text-orange-500">
+        <span className="font-semibold text-primary">
           {(currentPage - 1) * pageSize + 1}
         </span>{" "}
         لي{" "}
-        <span className="font-semibold text-orange-500">
+        <span className="font-semibold text-primary">
           {Math.min(currentPage * pageSize, count)}
         </span>{" "}
-        من <span className="font-semibold text-black">{count}</span> نتيجة
+        من <span className="font-semibold text-foreground">{count}</span> نتيجة
       </p>
 
       <div className="flex gap-1.5">

@@ -13,8 +13,8 @@ function Members() {
       <PageHeader>
         <div>
           <h3 className="text-xl font-bold sm:text-2xl">إدارة الأعضاء</h3>
-          <span className="mt-1 block text-[15px] font-semibold text-stone-500">
-            <span className="text-xl font-semibold text-orange-500">
+          <span className="mt-1 block text-[15px] font-semibold text-muted">
+            <span className="text-xl font-semibold text-primary">
               {members_count ?? ""}
             </span>{" "}
             أعضاء مسجلين

@@ -33,14 +33,14 @@ function CustomTooltip({ active, payload }) {
   const data = payload[0].payload;
 
   return (
-    <div className="w-[220px] rounded-2xl border border-orange-100 bg-white/95 p-4 shadow-xl backdrop-blur">
-      <h3 className="mb-3 border-b border-orange-100 pb-2 text-right text-sm font-bold text-orange-600">
+    <div className="w-[220px] rounded-2xl border border-border bg-surface/95 p-4 text-foreground shadow-xl backdrop-blur">
+      <h3 className="mb-3 border-b border-border pb-2 text-right text-sm font-bold text-primary-hover">
         {data.monthName}
       </h3>
 
       <div className="space-y-2 text-xs sm:text-sm">
         <div className="flex items-center justify-between">
-          <span className="text-gray-600">إجمالي الدخل</span>
+          <span className="text-muted">إجمالي الدخل</span>
 
           <span className="font-semibold text-emerald-600">
             {formatCurrency(data.income)}
@@ -48,7 +48,7 @@ function CustomTooltip({ active, payload }) {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-gray-600">إجمالي المصروفات</span>
+          <span className="text-muted">إجمالي المصروفات</span>
 
           <span className="font-semibold text-red-500">
             {formatCurrency(data.expense)}
@@ -56,16 +56,16 @@ function CustomTooltip({ active, payload }) {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-gray-600">نصيب المدربين</span>
+          <span className="text-muted">نصيب المدربين</span>
 
           <span className="font-semibold text-sky-600">
             {formatCurrency(data.captains_amount)}
           </span>
         </div>
 
-        <hr className="border-orange-100" />
+        <hr className="border-border" />
 
-        <div className="flex items-center justify-between text-sm font-bold text-orange-600">
+        <div className="flex items-center justify-between text-sm font-bold text-primary-hover">
           <span>صافي الربح</span>
 
           <span>{formatCurrency(data.net_profit)}</span>
@@ -82,8 +82,8 @@ export default function DashboardAreaChart({ data }) {
   }));
 
   return (
-    <div className="w-full min-w-0 rounded-2xl border border-orange-100 bg-white p-3 shadow-sm sm:p-5">
-      <h2 className="mb-4 text-base font-bold text-gray-800 sm:text-lg">
+    <div className="w-full min-w-0 rounded-2xl border border-border bg-surface p-3 text-foreground shadow-sm sm:p-5">
+      <h2 className="mb-4 text-base font-bold text-foreground sm:text-lg">
         الأداء الشهري
       </h2>
 
@@ -106,15 +106,23 @@ export default function DashboardAreaChart({ data }) {
           >
             <defs>
               <linearGradient id="orangeGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F97316" stopOpacity={0.45} />
+                <stop
+                  offset="0%"
+                  stopColor="var(--theme-primary)"
+                  stopOpacity={0.45}
+                />
 
-                <stop offset="100%" stopColor="#F97316" stopOpacity={0.03} />
+                <stop
+                  offset="100%"
+                  stopColor="var(--theme-primary)"
+                  stopOpacity={0.03}
+                />
               </linearGradient>
             </defs>
 
             <CartesianGrid
               vertical={false}
-              stroke="#f3f4f6"
+              stroke="var(--theme-border)"
               strokeDasharray="4 4"
             />
 
@@ -125,7 +133,7 @@ export default function DashboardAreaChart({ data }) {
               minTickGap={20}
               interval="preserveStartEnd"
               tick={{
-                fill: "#6b7280",
+                fill: "var(--theme-text-muted)",
                 fontSize: 11,
               }}
             />
@@ -136,7 +144,7 @@ export default function DashboardAreaChart({ data }) {
               axisLine={false}
               width={45}
               tick={{
-                fill: "#6b7280",
+                fill: "var(--theme-text-muted)",
                 fontSize: 11,
               }}
             />
@@ -144,7 +152,7 @@ export default function DashboardAreaChart({ data }) {
             <Tooltip
               content={<CustomTooltip />}
               cursor={{
-                stroke: "#F97316",
+                stroke: "var(--theme-primary)",
                 strokeDasharray: "4 4",
                 strokeWidth: 1.5,
               }}
@@ -157,21 +165,21 @@ export default function DashboardAreaChart({ data }) {
             <Area
               type="monotone"
               dataKey="net_profit"
-              stroke="#F97316"
+              stroke="var(--theme-primary)"
               strokeWidth={3}
               fill="url(#orangeGradient)"
               isAnimationActive
               animationDuration={700}
               dot={{
                 r: 3,
-                fill: "#F97316",
-                stroke: "#fff",
+                fill: "var(--theme-primary)",
+                stroke: "var(--theme-surface)",
                 strokeWidth: 2,
               }}
               activeDot={{
                 r: 6,
-                fill: "#EA580C",
-                stroke: "#fff",
+                fill: "var(--theme-primary-hover)",
+                stroke: "var(--theme-surface)",
                 strokeWidth: 3,
               }}
               style={{

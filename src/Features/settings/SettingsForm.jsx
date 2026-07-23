@@ -44,7 +44,7 @@ function SettingsForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-1.5 mx-auto mt-4 max-w-4xl space-y-6 rounded-2xl bg-white p-6 shadow-sm"
+      className="mx-1.5 mx-auto mt-4 max-w-4xl space-y-6 rounded-2xl bg-surface p-6 text-foreground shadow-sm"
     >
       {/* <div>
         <h2 className="text-xl font-bold text-slate-800">إعدادات الصالة</h2>
@@ -58,18 +58,37 @@ function SettingsForm() {
         {/* Gym Name */}
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-slate-700">
-            <FaDumbbell className="text-orange-500" />
+          <label className="flex items-center gap-2 font-medium text-foreground">
+            <FaDumbbell className="text-primary" />
             اسم الصالة
           </label>
 
           <input
             {...register("gym_name")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-3 transition outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+            className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition outline-none placeholder:text-muted focus:border-primary focus:ring-4 focus:ring-primary/15"
             placeholder="مثال : Power Gym"
           />
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
+            الاسم الذي سيظهر داخل النظام.
+          </p>
+        </div>
+
+        {/* gym area */}
+
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 font-medium text-foreground">
+            <FaDumbbell className="text-primary" />
+            مكان الصاله
+          </label>
+
+          <input
+            {...register("gym_area")}
+            className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition outline-none placeholder:text-muted focus:border-primary focus:ring-4 focus:ring-primary/15"
+            placeholder="مثال : الجيزه"
+          />
+
+          <p className="text-xs text-muted">
             الاسم الذي سيظهر داخل النظام.
           </p>
         </div>
@@ -77,18 +96,18 @@ function SettingsForm() {
         {/* Session Price */}
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-slate-700">
-            <FaMoneyBillWave className="text-orange-500" />
+          <label className="flex items-center gap-2 font-medium text-foreground">
+            <FaMoneyBillWave className="text-primary" />
             سعر الحصة
           </label>
 
           <input
             type="number"
             {...register("session_price")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-3 transition outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+            className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition outline-none focus:border-primary focus:ring-4 focus:ring-primary/15"
           />
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
             السعر الافتراضي للحصة الواحدة.
           </p>
         </div>
@@ -96,18 +115,18 @@ function SettingsForm() {
         {/* Expiring Soon */}
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-slate-700">
-            <FaCalendarDays className="text-orange-500" />
+          <label className="flex items-center gap-2 font-medium text-foreground">
+            <FaCalendarDays className="text-primary" />
             قبل انتهاء الاشتراك
           </label>
 
           <input
             type="number"
             {...register("expiring_soon_days")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-3 transition outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+            className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition outline-none focus:border-primary focus:ring-4 focus:ring-primary/15"
           />
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
             عدد الأيام التي يبدأ عندها ظهور تنبيه انتهاء الاشتراك.
           </p>
         </div>
@@ -115,8 +134,8 @@ function SettingsForm() {
         {/* Percentage */}
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-slate-700">
-            <FaPercent className="text-orange-500" />
+          <label className="flex items-center gap-2 font-medium text-foreground">
+            <FaPercent className="text-primary" />
             نسبة الصالة
           </label>
 
@@ -125,10 +144,10 @@ function SettingsForm() {
             min="0"
             max="100"
             {...register("percentage")}
-            className="w-full rounded-xl border border-slate-200 px-4 py-3 transition outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
+            className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-foreground transition outline-none focus:border-primary focus:ring-4 focus:ring-primary/15"
           />
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
             النسبة التي تحصل عليها الصالة من قيمة الحصة.
           </p>
         </div>
@@ -136,20 +155,20 @@ function SettingsForm() {
 
       {/* Percentage Preview */}
 
-      <div className="rounded-2xl border border-orange-200 bg-orange-50 p-5">
-        <h3 className="mb-4 font-semibold text-orange-700">توزيع قيمة الحصة</h3>
+      <div className="rounded-2xl border border-primary/20 bg-primary/10 p-5">
+        <h3 className="mb-4 font-semibold text-primary-hover">توزيع قيمة الحصة</h3>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <p className="text-sm text-slate-500">نسبة الصالة</p>
+          <div className="rounded-xl bg-surface p-4 shadow-sm">
+            <p className="text-sm text-muted">نسبة الصالة</p>
 
-            <h2 className="mt-1 text-3xl font-bold text-orange-600">
+            <h2 className="mt-1 text-3xl font-bold text-primary-hover">
               {percentage}%
             </h2>
           </div>
 
-          <div className="rounded-xl bg-white p-4 shadow-sm">
-            <p className="text-sm text-slate-500">نسبة المدرب</p>
+          <div className="rounded-xl bg-surface p-4 shadow-sm">
+            <p className="text-sm text-muted">نسبة المدرب</p>
 
             <h2 className="mt-1 text-3xl font-bold text-emerald-600">
               {100 - percentage}%
@@ -157,7 +176,7 @@ function SettingsForm() {
           </div>
         </div>
 
-        <p className="mt-4 text-sm text-slate-600">
+        <p className="mt-4 text-sm text-muted">
           يتم احتساب نسبة المدرب تلقائياً بحيث يكون مجموع النسبتين 100%.
         </p>
       </div>

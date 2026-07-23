@@ -48,7 +48,10 @@ function CaptainForm({ captain = {}, onClose }) {
   if (isWorking) return <Spinner />;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 p-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-5 p-6 text-foreground"
+    >
       <h2 className="text-2xl font-bold">
         {isEditSession ? "تعديل المدرب" : "إضافة مدرب"}
       </h2>
@@ -61,7 +64,7 @@ function CaptainForm({ captain = {}, onClose }) {
           type="text"
           placeholder="اسم المدرب"
           disabled={isWorking}
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500 disabled:cursor-not-allowed disabled:bg-stone-100"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary disabled:cursor-not-allowed disabled:bg-background disabled:text-muted"
           {...register("full_name", {
             required: "الاسم مطلوب",
           })}
@@ -80,7 +83,7 @@ function CaptainForm({ captain = {}, onClose }) {
           type="tel"
           placeholder="01xxxxxxxxx"
           disabled={isWorking}
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500 disabled:cursor-not-allowed disabled:bg-stone-100"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary disabled:cursor-not-allowed disabled:bg-background disabled:text-muted"
           {...register("phone", {
             required: "رقم الهاتف مطلوب",
             pattern: {
@@ -103,7 +106,7 @@ function CaptainForm({ captain = {}, onClose }) {
           type="number"
           placeholder="سعر الاشتراك"
           disabled={isWorking}
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500 disabled:cursor-not-allowed disabled:bg-stone-100"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary disabled:cursor-not-allowed disabled:bg-background disabled:text-muted"
           {...register("subscription_price", {
             required: "سعر الاشتراك مطلوب",
             valueAsNumber: true,
@@ -125,12 +128,12 @@ function CaptainForm({ captain = {}, onClose }) {
           rows={4}
           placeholder="اكتب أي ملاحظات..."
           disabled={isWorking}
-          className="w-full resize-none rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500 disabled:cursor-not-allowed disabled:bg-stone-100"
+          className="w-full resize-none rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary disabled:cursor-not-allowed disabled:bg-background disabled:text-muted"
           {...register("notes")}
         />
       </div>
 
-      <div className="flex justify-end gap-3 border-t pt-5">
+      <div className="flex justify-end gap-3 border-t border-border pt-5">
         <Button
           type="button"
           design="secondary"

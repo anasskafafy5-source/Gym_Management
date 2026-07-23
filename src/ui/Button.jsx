@@ -12,10 +12,10 @@ function Button({
 
   // 2. التصميم
   const designStyles = {
-    primary: "bg-orange-500 text-stone-50 hover:bg-orange-700",
-    secondary: "bg-stone-200 text-stone-900 hover:bg-stone-400",
-    delete: "bg-red-500 text-stone-50 hover:bg-red-700",
-    cold: "bg-blue-400 text-stone-50 hover:bg-blue-300",
+    primary: "bg-primary text-white hover:bg-primary-hover",
+    secondary: "bg-background text-foreground hover:bg-border",
+    delete: "bg-red-500 text-white hover:bg-red-700",
+    cold: "bg-blue-400 text-white hover:bg-blue-300",
   };
 
   // 3. الأحجام

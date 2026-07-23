@@ -21,6 +21,32 @@
     />
     <!-- End Google Fonts -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const storageKey = "velora-theme";
+        const validThemes = ["light", "dark", "system"];
+
+        let theme = "system";
+
+        try {
+          const storedTheme = localStorage.getItem(storageKey);
+
+          if (validThemes.includes(storedTheme)) {
+            theme = storedTheme;
+          }
+        } catch {
+          // Use the system preference when storage is unavailable.
+        }
+
+        const isDark =
+          theme === "dark" ||
+          (theme === "system" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        document.documentElement.classList.toggle("dark", isDark);
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+      })();
+    </script>
     <title>Velora Fitness</title>
   </head>
   <body>

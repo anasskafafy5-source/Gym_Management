@@ -10,11 +10,11 @@ function DashboardLatPaymentsArea() {
   if (isLoading) return <Spinner />;
   if (error) return <Error />;
   return (
-    <div className="mb-3 rounded-xl bg-white px-2 py-4">
+    <div className="mb-3 rounded-xl bg-surface px-2 py-4 text-foreground">
       <div className="my-4 flex items-center justify-between">
         <h3 className="font-bold text-xl ">آخر المعاملات</h3>
         <Link
-          className="font-semibold text-[13] text-orange-500 duration-300 hover:text-orange-300"
+          className="text-[13] font-semibold text-primary duration-300 hover:text-primary-hover"
           to="/payments"
         >
           عرض الكل

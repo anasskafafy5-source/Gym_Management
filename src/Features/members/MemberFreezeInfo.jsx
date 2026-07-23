@@ -18,21 +18,21 @@ function MemberFreezeInfo({ member }) {
   if (isUpdating) return <Spinner />;
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-2xl border border-border bg-surface p-4 shadow-sm">
       {/* Header */}
-      <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-2">
+      <div className="mb-4 flex items-center justify-between border-b border-border pb-2">
         <div className="flex items-center gap-2">
           <div
             className={`flex h-8 w-8 items-center justify-center rounded-lg ${
               isFrozen
                 ? "bg-sky-100 text-sky-600"
-                : "bg-slate-100 text-slate-500"
+                : "bg-background text-muted"
             }`}
           >
             <FaSnowflake />
           </div>
 
-          <h3 className="text-base font-bold text-slate-800">
+          <h3 className="text-base font-bold text-foreground">
             معلومات التجميد
           </h3>
         </div>
@@ -71,14 +71,14 @@ function MemberFreezeInfo({ member }) {
           </Button>
         </>
       ) : (
-        <div className="flex min-h-[170px] flex-col items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-center">
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+        <div className="flex min-h-[170px] flex-col items-center justify-center rounded-xl border border-dashed border-border bg-background text-center">
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface text-muted">
             <FaSnowflake className="text-lg" />
           </div>
 
-          <p className="font-semibold text-slate-600">العضو غير مجمد</p>
+          <p className="font-semibold text-foreground">العضو غير مجمد</p>
 
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="mt-1 text-xs text-muted">
             لا يوجد أي تجميد نشط لهذا العضو.
           </p>
         </div>
@@ -89,16 +89,16 @@ function MemberFreezeInfo({ member }) {
 
 function InfoRow({ icon, label, value }) {
   return (
-    <div className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50/70 px-3 py-2">
+    <div className="flex items-center justify-between rounded-xl border border-border bg-background/70 px-3 py-2">
       <div className="flex items-center gap-2.5">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-100 text-sky-600">
           {icon}
         </div>
 
-        <span className="text-xs font-medium text-slate-500">{label}</span>
+        <span className="text-xs font-medium text-muted">{label}</span>
       </div>
 
-      <span className="max-w-[120px] truncate text-sm font-semibold text-slate-800">
+      <span className="max-w-[120px] truncate text-sm font-semibold text-foreground">
         {value}
       </span>
     </div>

@@ -22,7 +22,7 @@ function MembersMainArea() {
         error={error}
         members_count={members_count}
       />
-      <div className="border-t border-slate-200 px-3 py-2">
+      <div className="border-t border-border px-3 py-2">
         <Pagination count={members_count} pageSize={PAGE_SIZE_MEMBERS} />
       </div>
     </div>

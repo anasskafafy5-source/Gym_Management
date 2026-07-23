@@ -13,7 +13,7 @@ function ConfirmModal({
     <div className="p-6">
       <h2 className="mb-3 text-xl font-semibold">{title}</h2>
 
-      <p className="mb-6 text-gray-600">{message}</p>
+      <p className="mb-6 text-muted">{message}</p>
 
       <div className="flex justify-end gap-3">
         <Button design="secondary" onClick={onClose} disabled={isLoading}>

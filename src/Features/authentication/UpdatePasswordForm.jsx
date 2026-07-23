@@ -42,14 +42,14 @@ export default function UpdatePasswordForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-11 w-full max-w-lg space-y-6 text-right"
+      className="mt-11 w-full max-w-lg space-y-6 text-right text-foreground"
     >
-      <h5 className="text-[17px] font-semibold text-orange-500">
+      <h5 className="text-[17px] font-semibold text-primary">
         تغير كلمه المرور
       </h5>
       {/* Password */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           كلمة المرور الجديدة
         </label>
 
@@ -60,14 +60,14 @@ export default function UpdatePasswordForm() {
             setPassword(e.target.value);
             setError("");
           }}
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 transition outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-2 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           placeholder="********"
         />
       </div>
 
       {/* Confirm Password */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           تأكيد كلمة المرور
         </label>
 
@@ -78,7 +78,7 @@ export default function UpdatePasswordForm() {
             setConfirmPassword(e.target.value);
             setError("");
           }}
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 transition outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-2 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           placeholder="********"
         />
 
@@ -91,7 +91,7 @@ export default function UpdatePasswordForm() {
           disabled={isPending}
           type="button"
           onClick={handleCancel}
-          className="rounded-lg border border-gray-300 px-5 py-2 font-medium text-gray-700 transition hover:bg-gray-100"
+          className="rounded-lg border border-border px-5 py-2 font-medium text-foreground transition hover:bg-background"
         >
           إلغاء
         </Button>
@@ -99,7 +99,7 @@ export default function UpdatePasswordForm() {
         <Button
           disabled={isPending}
           type="submit"
-          className="rounded-lg bg-orange-500 px-5 py-2 font-medium text-white transition hover:bg-orange-600"
+          className="rounded-lg bg-primary px-5 py-2 font-medium text-white transition hover:bg-primary-hover"
         >
           حفظ التعديلات
         </Button>

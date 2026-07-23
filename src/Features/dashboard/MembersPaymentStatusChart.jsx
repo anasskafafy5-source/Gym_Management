@@ -35,12 +35,12 @@ export default function MembersPaymentStatusChart({ data }) {
   ];
 
   return (
-    <div className="w-full rounded-3xl border border-gray-100 bg-white p-6 shadow-sm">
+    <div className="w-full rounded-3xl border border-border bg-surface p-6 text-foreground shadow-sm">
       {/* Header */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold text-gray-900">حالة الاشتراكات</h2>
+        <h2 className="text-xl font-bold text-foreground">حالة الاشتراكات</h2>
 
-        <p className="mt-1 text-sm text-gray-500">توزيع حالات جميع الأعضاء</p>
+        <p className="mt-1 text-sm text-muted">توزيع حالات جميع الأعضاء</p>
       </div>
 
       {/* Content */}
@@ -72,7 +72,9 @@ export default function MembersPaymentStatusChart({ data }) {
                   cursor={false}
                   contentStyle={{
                     borderRadius: "16px",
-                    border: "1px solid #E5E7EB",
+                    border: "1px solid var(--theme-border)",
+                    backgroundColor: "var(--theme-surface)",
+                    color: "var(--theme-text)",
                     boxShadow: "0 12px 30px rgba(0,0,0,.08)",
                     padding: "12px",
                   }}
@@ -90,11 +92,11 @@ export default function MembersPaymentStatusChart({ data }) {
 
             {/* Center */}
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-4xl font-bold tracking-tight text-gray-900">
+              <span className="text-4xl font-bold tracking-tight text-foreground">
                 {total}
               </span>
 
-              <span className="mt-1 text-sm text-gray-500">إجمالي الأعضاء</span>
+              <span className="mt-1 text-sm text-muted">إجمالي الأعضاء</span>
             </div>
           </div>
         </div>
@@ -110,7 +112,7 @@ export default function MembersPaymentStatusChart({ data }) {
             return (
               <div
                 key={item.name}
-                className="group flex items-center justify-between rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-gray-200 hover:shadow-lg"
+                className="group flex items-center justify-between rounded-2xl border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg"
               >
                 <div className="flex items-center gap-4">
                   <div
@@ -123,20 +125,20 @@ export default function MembersPaymentStatusChart({ data }) {
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                    <h3 className="font-semibold text-foreground">{item.name}</h3>
 
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-muted">
                       {percent}% من إجمالي الأعضاء
                     </p>
                   </div>
                 </div>
 
                 <div className="min-w-[110px] text-right">
-                  <div className="text-3xl font-bold text-gray-900">
+                  <div className="text-3xl font-bold text-foreground">
                     {item.value}
                   </div>
 
-                  <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-gray-100">
+                  <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-background">
                     <div
                       className="h-full rounded-full transition-all duration-700"
                       style={{

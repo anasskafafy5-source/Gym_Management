@@ -30,13 +30,13 @@ function MemberFreezeForm({ member, onClose }) {
   return (
     <form
       onSubmit={handleSubmit(submit)}
-      className="space-y-6 rounded-xl bg-white p-6"
+      className="space-y-6 rounded-xl bg-surface p-6 text-foreground"
     >
       {/* Member Info */}
 
-      <div className="rounded-xl border border-amber-300 bg-amber-50 p-5 shadow-sm">
+      <div className="rounded-xl border border-amber-300 bg-amber-50 p-5 shadow-sm dark:border-amber-800 dark:bg-amber-950/30">
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-amber-900">
+          <h2 className="text-xl font-bold text-amber-900 dark:text-amber-300">
             {member.full_name}
           </h2>
 
@@ -55,24 +55,24 @@ function MemberFreezeForm({ member, onClose }) {
 
         <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
           <div>
-            <p className="text-gray-500">بداية الاشتراك</p>
+            <p className="text-muted">بداية الاشتراك</p>
             <p className="font-semibold">{member.subscription_start_date}</p>
           </div>
 
           <div>
-            <p className="text-gray-500">نهاية الاشتراك</p>
+            <p className="text-muted">نهاية الاشتراك</p>
             <p className="font-semibold">{member.subscription_end_date}</p>
           </div>
 
           <div>
-            <p className="text-gray-500">سعر الاشتراك</p>
+            <p className="text-muted">سعر الاشتراك</p>
             <p className="font-semibold">
               {formatCurrency(member.subscription_price)} جنيه
             </p>
           </div>
 
           <div>
-            <p className="text-gray-500">المبلغ المتبقي</p>
+            <p className="text-muted">المبلغ المتبقي</p>
 
             <p
               className={`font-bold ${
@@ -100,7 +100,7 @@ function MemberFreezeForm({ member, onClose }) {
               message: "يجب أن يكون أكبر من صفر",
             },
           })}
-          className="w-full rounded-lg border px-4 py-3 transition outline-none focus:border-amber-500"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-3 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
         />
 
         {errors.frozen_days && (
@@ -123,7 +123,7 @@ function MemberFreezeForm({ member, onClose }) {
               message: "السبب طويل جداً",
             },
           })}
-          className="w-full resize-none rounded-lg border px-4 py-3 transition outline-none focus:border-amber-500"
+          className="w-full resize-none rounded-lg border border-border bg-surface px-4 py-3 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           placeholder="اكتب سبب التجميد..."
         />
 

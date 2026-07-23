@@ -12,11 +12,11 @@ function MembersTable({membersViews , loading , error}) {
   if (error) return <Error />;
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1050px] table-fixed border-collapse">
-          <thead className="sticky top-0 z-10 bg-slate-50">
-            <tr className="border-b border-slate-200 text-xs font-semibold text-slate-600">
+          <thead className="sticky top-0 z-10 bg-background">
+            <tr className="border-b border-border text-xs font-semibold text-muted">
               <th className="w-10 px-2 py-2 text-center">#</th>
 
               <th className="px-2 py-2 text-right">الاسم</th>

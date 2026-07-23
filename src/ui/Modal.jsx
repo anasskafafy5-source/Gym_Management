@@ -11,7 +11,7 @@ function Modal({ isOpen, onClose, children }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-white shadow-2xl"
+        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-xl bg-surface text-foreground shadow-2xl"
       >
         {cloneElement(children, { onClose })}
       </div>

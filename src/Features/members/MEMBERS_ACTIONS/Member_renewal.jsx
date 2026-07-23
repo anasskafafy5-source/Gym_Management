@@ -11,7 +11,7 @@ function Member_renewal({ member }) {
   return (
     <>
       <Button design="secondary" onClick={() => setIsOpen(true)} size="small">
-        <FaRotate className="mx-auto text-slate-700" />
+        <FaRotate className="mx-auto text-foreground" />
       </Button>
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         {member.has_remaining ? (

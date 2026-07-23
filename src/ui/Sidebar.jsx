@@ -6,6 +6,7 @@ import { useGetSettings } from "../Features/settings/useGetSettings";
 function Sidebar() {
   const { settings } = useGetSettings();
   const gymName = settings?.gym_name ?? "";
+  const gymArea = settings?.gym_area ?? "";
 
   const { isOpenSide, setIsOpenSide } = useSideBar();
 
@@ -23,9 +24,9 @@ function Sidebar() {
 
   return (
     <aside
-      className={`top-navbar w-sidebar fixed right-0 z-40 h-dvh bg-white px-3 py-3 duration-500 ${isOpenSide ? "translate-x-0" : "translate-x-full"} transition-transform will-change-transform sm:right-0 sm:translate-x-0`}
+      className={`top-navbar w-sidebar fixed right-0 z-40 h-dvh bg-surface px-3 py-3 text-foreground duration-500 ${isOpenSide ? "translate-x-0" : "translate-x-full"} transition-transform will-change-transform sm:right-0 sm:translate-x-0`}
     >
-      <div className="flex w-full items-center gap-4 border-b border-orange-400 pb-4">
+      <div className="flex w-full items-center gap-4 border-b border-primary pb-4">
         <img
           className="block h-12 w-12 rounded-full"
           src="logo.jpg"
@@ -33,11 +34,11 @@ function Sidebar() {
         />
         <div className="flex flex-col">
           <h5 className="text-[13px] font-bold">{gymName ? gymName : ""}</h5>
-          <p className="text-[10px] text-stone-400">الحوامديه</p>
+          <p className="text-[10px] text-muted">{gymArea}</p>
         </div>
 
         <div
-          className="cursor-pointer text-xs font-semibold text-orange-500 sm:hidden"
+          className="cursor-pointer text-xs font-semibold text-primary sm:hidden"
           onClick={() => {
             if (window.innerWidth < 640) {
               setIsOpenSide(false);

@@ -12,27 +12,30 @@ import { formatCurrency } from "../../utils/helpers";
 
 function MemberCard({ member }) {
   const statusColors = {
-    green: "bg-green-100 text-green-700",
-    yellow: "bg-yellow-100 text-yellow-700",
-    red: "bg-red-100 text-red-700",
-    blue: "bg-blue-100 text-blue-700 ring-1 ring-blue-200",
-    gray: "bg-gray-100 text-gray-700",
+    green:
+      "bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-400",
+    yellow:
+      "bg-yellow-100 text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-400",
+    red: "bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400",
+    blue:
+      "bg-blue-100 text-blue-700 ring-1 ring-blue-200 dark:bg-blue-500/15 dark:text-blue-400 dark:ring-blue-800",
+    gray: "bg-background text-muted",
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Top Border */}
-      <div className="h-1 bg-orange-500" />
+      <div className="h-1 bg-primary" />
 
       <div className="space-y-5 p-5">
         {/* Header */}
         <div>
-          <h2 className="flex items-center gap-2 text-lg font-bold text-slate-800">
-            <FaUser className="text-orange-500" />
+          <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
+            <FaUser className="text-primary" />
             {member.full_name}
           </h2>
 
-          <div className="mt-3 space-y-2 text-sm text-slate-600">
+          <div className="mt-3 space-y-2 text-sm text-muted">
             <p className="flex items-center gap-2">
               <FaPhone />
               {member.phone || "غير مسجل"}
@@ -46,13 +49,13 @@ function MemberCard({ member }) {
         </div>
 
         {/* Subscription */}
-        <div className="rounded-xl bg-orange-50 p-4">
-          <h3 className="mb-3 font-semibold text-slate-700">الاشتراك</h3>
+        <div className="rounded-xl bg-primary/10 p-4">
+          <h3 className="mb-3 font-semibold text-foreground">الاشتراك</h3>
 
           <div className="space-y-3 text-sm">
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <FaCalendarDays className="text-orange-500" />
+                <FaCalendarDays className="text-primary" />
                 البداية
               </span>
 
@@ -61,7 +64,7 @@ function MemberCard({ member }) {
 
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <FaCalendarDays className="text-orange-500" />
+                <FaCalendarDays className="text-primary" />
                 النهاية
               </span>
 
@@ -70,7 +73,7 @@ function MemberCard({ member }) {
 
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-2">
-                <FaClock className="text-orange-500" />
+                <FaClock className="text-primary" />
                 المتبقي
               </span>
 
@@ -79,7 +82,7 @@ function MemberCard({ member }) {
                   member.days_left < 0
                     ? "font-semibold text-red-600"
                     : member.days_left === 0
-                      ? "font-semibold text-orange-600"
+                      ? "font-semibold text-primary-hover"
                       : "font-semibold text-green-600"
                 }
               >
@@ -105,11 +108,11 @@ function MemberCard({ member }) {
             </span>
 
             {member.has_remaining ? (
-              <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">
+              <span className="rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary-hover">
                 💰 عليه {formatCurrency(member.remaining_amount)} ج.م
               </span>
             ) : (
-              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 dark:bg-green-500/15 dark:text-green-400">
                 💰 مدفوع بالكامل
               </span>
             )}

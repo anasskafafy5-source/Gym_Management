@@ -13,7 +13,7 @@ function CaptainsPage() {
       <PageHeader>
         <div className="flex flex-col gap-1">
           <h3 className="font-bold">المدربين</h3>{" "}
-          <span className="block text-xs font-semibold text-stone-400">
+          <span className="block text-xs font-semibold text-muted">
             {captainsCount ? captainsCount : ""} من المدربين مسجلين
           </span>
         </div>

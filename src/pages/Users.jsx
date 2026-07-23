@@ -7,7 +7,7 @@ function Users() {
       <div className="my-2 flex items-center justify-between">
         <div>
           <h3 className="text-xl font-bold"> إدارة المستخدمين</h3>
-          <p className="text-[14px] font-semibold text-stone-600">
+          <p className="text-[14px] font-semibold text-muted">
             واداره الحساب{" "}
           </p>
         </div>

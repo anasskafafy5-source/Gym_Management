@@ -54,16 +54,16 @@ function TransactionForm({ onClose }) {
   return (
     <form
       onSubmit={handleSubmit(handleForm)}
-      className="space-y-6 rounded-2xl bg-white p-6 shadow-lg"
+      className="space-y-6 rounded-2xl bg-surface p-6 text-foreground shadow-lg"
     >
-      <h2 className="text-center text-2xl font-bold text-slate-800">
+      <h2 className="text-center text-2xl font-bold text-foreground">
         تسجيل عملية مالية
       </h2>
 
       {/* اتجاه العملية */}
 
       <div>
-        <label className="mb-3 block font-semibold text-slate-700">
+        <label className="mb-3 block font-semibold text-foreground">
           نوع العملية
         </label>
 
@@ -73,8 +73,8 @@ function TransactionForm({ onClose }) {
           <label
             className={`cursor-pointer rounded-xl border p-5 transition ${
               direction === "income"
-                ? "border-green-500 bg-green-50"
-                : "border-slate-200 hover:border-green-300"
+                ? "border-green-500 bg-green-50 dark:bg-green-500/10"
+                : "border-border hover:border-green-300 dark:hover:border-green-700"
             }`}
           >
             <input
@@ -90,7 +90,7 @@ function TransactionForm({ onClose }) {
               <div>
                 <h3 className="font-bold text-green-600">إيراد</h3>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-muted">
                   أي مبلغ دخل إلى الصالة مثل بيع منتج أو أي دخل إضافي.
                 </p>
               </div>
@@ -102,8 +102,8 @@ function TransactionForm({ onClose }) {
           <label
             className={`cursor-pointer rounded-xl border p-5 transition ${
               direction === "expense"
-                ? "border-red-500 bg-red-50"
-                : "border-slate-200 hover:border-red-300"
+                ? "border-red-500 bg-red-50 dark:bg-red-500/10"
+                : "border-border hover:border-red-300 dark:hover:border-red-700"
             }`}
           >
             <input
@@ -119,7 +119,7 @@ function TransactionForm({ onClose }) {
               <div>
                 <h3 className="font-bold text-red-600">مصروف</h3>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-muted">
                   أي مبلغ خرج من الصالة مثل المرتبات أو الإيجار أو الكهرباء أو
                   الصيانة أو شراء الأدوات.
                 </p>
@@ -132,12 +132,12 @@ function TransactionForm({ onClose }) {
       {/* Amount */}
 
       <div>
-        <label className="mb-2 block font-semibold text-slate-700">
+        <label className="mb-2 block font-semibold text-foreground">
           المبلغ
         </label>
 
         <div className="relative">
-          <FaMoneyBillWave className="absolute top-1/2 left-4 -translate-y-1/2 text-slate-400" />
+          <FaMoneyBillWave className="absolute top-1/2 left-4 -translate-y-1/2 text-muted" />
 
           <input
             type="number"
@@ -149,7 +149,7 @@ function TransactionForm({ onClose }) {
                 message: "المبلغ يجب أن يكون أكبر من صفر",
               },
             })}
-            className="w-full rounded-xl border border-slate-300 py-3 pr-4 pl-11 transition outline-none focus:border-blue-500"
+            className="w-full rounded-xl border border-border bg-surface py-3 pr-4 pl-11 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           />
         </div>
 
@@ -163,12 +163,12 @@ function TransactionForm({ onClose }) {
       {/* السبب */}
 
       <div>
-        <label className="mb-2 block font-semibold text-slate-700">
+        <label className="mb-2 block font-semibold text-foreground">
           سبب العملية
         </label>
 
         <div className="relative">
-          <FaNoteSticky className="absolute top-3 left-4 text-slate-400" />
+          <FaNoteSticky className="absolute top-3 left-4 text-muted" />
 
           <input
             type="text"
@@ -178,11 +178,11 @@ function TransactionForm({ onClose }) {
               validate: (value) =>
                 value.trim().split(/\s+/).length <= 2 || "يسمح بكلمتين فقط",
             })}
-            className="w-full rounded-xl border border-slate-300 py-3 pr-4 pl-11 transition outline-none focus:border-blue-500"
+            className="w-full rounded-xl border border-border bg-surface py-3 pr-4 pl-11 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           />
         </div>
 
-        <p className="mt-2 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-muted">
           اكتب سببًا مختصرًا يوضح طبيعة العملية (بحد أقصى كلمتين).
         </p>
 
@@ -196,8 +196,8 @@ function TransactionForm({ onClose }) {
       <div
         className={`rounded-xl border p-4 ${
           direction === "income"
-            ? "border-green-300 bg-green-50"
-            : "border-red-300 bg-red-50"
+            ? "border-green-300 bg-green-50 dark:border-green-800 dark:bg-green-500/10"
+            : "border-red-300 bg-red-50 dark:border-red-800 dark:bg-red-500/10"
         }`}
       >
         <p className="font-semibold">
@@ -206,7 +206,7 @@ function TransactionForm({ onClose }) {
             : "📉 سيتم تسجيل العملية كمصروف."}
         </p>
 
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="mt-2 text-sm text-muted">
           سيتم حفظ تاريخ ووقت العملية تلقائيًا عند الضغط على زر الحفظ.
         </p>
       </div>

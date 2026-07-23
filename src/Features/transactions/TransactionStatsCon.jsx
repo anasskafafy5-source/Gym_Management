@@ -24,38 +24,38 @@ function TransactionStatsCon() {
         icon={<FaArrowAltCircleUp />}
         value={`${formatCurrency(income)}`}
         label="اجمالي الدخل"
-        iconColor="text-green-600"
-        iconBg="bg-green-100"
+        iconColor="text-green-600 dark:text-green-400"
+        iconBg="bg-green-100 dark:bg-green-500/15"
       />
       <StatCard
         icon={<FaArrowCircleDown />}
         value={`${formatCurrency(expense)}`}
         // value={`${formatCurrency(3333333)}`}
         label="إجمالي  المصروفات "
-        iconColor="text-red-600"
-        iconBg="bg-red-100"
+        iconColor="text-red-600 dark:text-red-400"
+        iconBg="bg-red-100 dark:bg-red-500/15"
       />
 
       <StatCard
         icon={<FaAward />}
         value={`${formatCurrency(captains_income)}`}
         label="اجمالي دخل المدربين"
-        iconColor="text-gray-600"
-        iconBg="bg-gray-100"
+        iconColor="text-muted"
+        iconBg="bg-background"
       />
       <StatCard
         icon={<MdOutlineShowChart />}
         value={`${formatCurrency(profit)}`}
         label="صافي الربح"
-        iconColor="text-purple-600"
-        iconBg="bg-purple-100"
+        iconColor="text-purple-600 dark:text-purple-400"
+        iconBg="bg-purple-100 dark:bg-purple-500/15"
       />
       <StatCard
         icon={<RiMoneyPoundCircleFill />}
         value={transactions_count}
         label="اجمالي العمليات "
-        iconColor="text-orange-600"
-        iconBg="bg-orange-100"
+        iconColor="text-primary-hover"
+        iconBg="bg-primary/15"
       />
     </div>
   );

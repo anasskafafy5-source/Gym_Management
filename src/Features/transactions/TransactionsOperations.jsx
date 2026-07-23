@@ -8,7 +8,7 @@ function TransactionsOperations() {
   if (isPending) return <Spinner />;
 
   return (
-    <div className="my-5 rounded-xl bg-white px-1.5 py-3">
+    <div className="my-5 rounded-xl bg-surface px-1.5 py-3">
       <Sort
         options={[
           {

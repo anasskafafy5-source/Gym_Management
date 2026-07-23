@@ -6,12 +6,12 @@ function StatCard({
   label,
   iconColor = "text-blue-600",
   iconBg = "bg-blue-50",
-  textColor = "text-slate-500",
+  textColor = "text-muted",
   className = "",
 }) {
   return (
     <div
-      className={`rounded-2xl border border-slate-200 bg-white p-5 ${className} `}
+      className={`rounded-2xl border border-border bg-surface p-5 ${className} `}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -25,7 +25,7 @@ function StatCard({
       </div>
 
       {/* Value */}
-      <h2 className="mt-5 text-4xl font-bold tracking-tight text-slate-900">
+      <h2 className="mt-5 text-4xl font-bold tracking-tight text-foreground">
         {value}
       </h2>
     </div>

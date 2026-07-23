@@ -17,16 +17,16 @@ function CaptainInfoCart({ captain }) {
 
   return (
     <>
-      <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="rounded-3xl border border-border bg-surface p-6 text-foreground shadow-sm">
         {/* Header */}
-        <div className="mb-8 border-b border-gray-100 pb-5">
-          <h2 className="flex items-center justify-between text-2xl font-bold text-gray-800">
+        <div className="mb-8 border-b border-border pb-5">
+          <h2 className="flex items-center justify-between text-2xl font-bold text-foreground">
             <p>{captain.full_name}</p>
-            <p className="text-2xl font-bold text-orange-500">#{captain.id}</p>
+            <p className="text-2xl font-bold text-primary">#{captain.id}</p>
           </h2>
 
-          <div className="mt-2 mb-3 flex items-center gap-2 text-gray-500">
-            <FaPhoneAlt className="text-orange-500" />
+          <div className="mt-2 mb-3 flex items-center gap-2 text-muted">
+            <FaPhoneAlt className="text-primary" />
             <span>{captain.phone}</span>
           </div>
 
@@ -51,78 +51,78 @@ function CaptainInfoCart({ captain }) {
         {/* Stats */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {/* Members */}
-          <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md">
+          <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md dark:border-blue-900 dark:bg-blue-500/10">
             <div className="mb-4 flex items-center justify-between">
-              <FaUsers className="text-3xl text-blue-600" />
-              <span className="text-xs font-medium text-blue-600">الأعضاء</span>
+              <FaUsers className="text-3xl text-blue-600 dark:text-blue-400" />
+              <span className="text-xs font-medium text-blue-600 dark:text-blue-400">الأعضاء</span>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-800">
+            <h3 className="text-3xl font-bold text-foreground">
               {captain.members_count}
             </h3>
           </div>
 
           {/* Revenue */}
-          <div className="rounded-2xl border border-green-100 bg-green-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md">
+          <div className="rounded-2xl border border-green-100 bg-green-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md dark:border-green-900 dark:bg-green-500/10">
             <div className="mb-4 flex items-center justify-between">
-              <FaMoneyBillWave className="text-3xl text-green-600" />
-              <span className="text-xs font-medium text-green-600">
+              <FaMoneyBillWave className="text-3xl text-green-600 dark:text-green-400" />
+              <span className="text-xs font-medium text-green-600 dark:text-green-400">
                 الإيرادات اخر 30 يوم
               </span>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-800">
+            <h3 className="text-3xl font-bold text-foreground">
               {captain.total_revenue} ج.م
             </h3>
           </div>
 
           {/* Captain Share */}
-          <div className="rounded-2xl border border-orange-100 bg-orange-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md">
+          <div className="rounded-2xl border border-primary/20 bg-primary/10 p-5 transition hover:-translate-y-1 hover:shadow-md">
             <div className="mb-4 flex items-center justify-between">
-              <FaHandHoldingUsd className="text-3xl text-orange-600" />
-              <span className="text-xs font-medium text-orange-600">
+              <FaHandHoldingUsd className="text-3xl text-primary-hover" />
+              <span className="text-xs font-medium text-primary-hover">
                 نصيب المدرب اخر 30 يوم
               </span>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-800">
+            <h3 className="text-3xl font-bold text-foreground">
               {captain.captain_share} ج.م
             </h3>
 
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-sm text-muted">
               ({captain.captain_percentage}%) النسبه الحاليه
             </p>
           </div>
 
           {/* Gym Share */}
-          <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md">
+          <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-5 transition hover:-translate-y-1 hover:shadow-md dark:border-purple-900 dark:bg-purple-500/10">
             <div className="mb-4 flex items-center justify-between">
-              <FaWarehouse className="text-3xl text-purple-600" />
-              <span className="text-xs font-medium text-purple-600">
+              <FaWarehouse className="text-3xl text-purple-600 dark:text-purple-400" />
+              <span className="text-xs font-medium text-purple-600 dark:text-purple-400">
                 نصيب الصالة اخر 30 يوم
               </span>
             </div>
 
-            <h3 className="text-3xl font-bold text-gray-800">
+            <h3 className="text-3xl font-bold text-foreground">
               {captain.gym_share} ج.م 
             </h3>
 
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-sm text-muted">
               ({captain.gym_percentage}%) النسبه الحاليه 
             </p>
           </div>
         </div>
 
         {/* Notes */}
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50 p-5">
-          <h3 className="mb-3 text-lg font-bold text-gray-800">الملاحظات</h3>
+        <div className="mt-8 rounded-2xl border border-border bg-background p-5">
+          <h3 className="mb-3 text-lg font-bold text-foreground">الملاحظات</h3>
 
           {captain.notes ? (
-            <p className="leading-7 whitespace-pre-line text-gray-600">
+            <p className="leading-7 whitespace-pre-line text-foreground">
               {captain.notes}
             </p>
           ) : (
-            <p className="text-gray-400 italic">
+            <p className="text-muted italic">
               لا توجد ملاحظات لهذا الكابتن.
             </p>
           )}

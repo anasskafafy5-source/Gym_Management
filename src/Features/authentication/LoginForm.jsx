@@ -33,17 +33,17 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#eee] px-4">
-      <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md rounded-3xl bg-surface p-8 text-foreground shadow-xl">
         {/* Header */}
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-500">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
             <LogIn size={30} className="text-white" />
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-800">تسجيل الدخول</h1>
+          <h1 className="text-3xl font-bold text-foreground">تسجيل الدخول</h1>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="mt-2 text-sm text-muted">
             سجل دخولك للوصول إلى لوحة التحكم
           </p>
         </div>
@@ -51,14 +51,14 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-foreground">
               البريد الإلكتروني
             </label>
 
             <div className="relative">
               <Mail
                 size={20}
-                className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-400"
+                className="absolute top-1/2 left-4 -translate-y-1/2 text-muted"
               />
 
               <input
@@ -66,21 +66,21 @@ export default function LoginForm() {
                 placeholder="example@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-12 w-full rounded-xl border border-gray-300 bg-gray-50 pr-4 pl-12 transition-all outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                className="h-12 w-full rounded-xl border border-border bg-background pr-4 pl-12 text-foreground transition-all outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
           </div>
 
           {/* Password */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label className="mb-2 block text-sm font-medium text-foreground">
               كلمة المرور
             </label>
 
             <div className="relative">
               <Lock
                 size={20}
-                className="absolute top-1/2 left-4 -translate-y-1/2 text-gray-400"
+                className="absolute top-1/2 left-4 -translate-y-1/2 text-muted"
               />
 
               <input
@@ -88,7 +88,7 @@ export default function LoginForm() {
                 placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-12 w-full rounded-xl border border-gray-300 bg-gray-50 pr-4 pl-12 transition-all outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
+                className="h-12 w-full rounded-xl border border-border bg-background pr-4 pl-12 text-foreground transition-all outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function LoginForm() {
           <button
             type="submit"
             disabled={isLoading}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-orange-500 font-semibold text-white transition-all duration-300 hover:bg-orange-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-white transition-all duration-300 hover:bg-primary-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {isLoading ? (
               <>

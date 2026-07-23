@@ -43,7 +43,7 @@ function MemberRenewalForm({ member, onClose }) {
       <h2 className="text-2xl font-bold">تجديد الاشتراك</h2>
 
       {/* بيانات العضو */}
-      <div className="space-y-1 rounded-lg bg-orange-100 p-3 text-orange-900">
+      <div className="space-y-1 rounded-lg bg-primary/15 p-3 text-foreground">
         <p>
           العضو: <span className="font-semibold">{member.full_name}</span>
         </p>
@@ -69,7 +69,7 @@ function MemberRenewalForm({ member, onClose }) {
         )}
       </div>
 
-      <p className="text-sm text-stone-500">اختر فترة الاشتراك الجديدة.</p>
+      <p className="text-sm text-muted">اختر فترة الاشتراك الجديدة.</p>
 
       {/* بداية الاشتراك */}
       <DatePickerInput
@@ -105,7 +105,7 @@ function MemberRenewalForm({ member, onClose }) {
         <input
           type="number"
           placeholder="المبلغ المدفوع"
-          className="w-full rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("paid_amount", {
             required: "المبلغ المدفوع مطلوب",
             valueAsNumber: true,
@@ -126,7 +126,7 @@ function MemberRenewalForm({ member, onClose }) {
       </div>
 
       {/* ملخص العملية */}
-      <div className="space-y-2 rounded-lg border bg-stone-50 p-4">
+      <div className="space-y-2 rounded-lg border border-border bg-background p-4">
         <h3 className="font-semibold">ملخص العملية</h3>
 
         <div className="flex justify-between">
@@ -139,7 +139,7 @@ function MemberRenewalForm({ member, onClose }) {
           <span>{formatCurrency(paidAmount)} جنيه</span>
         </div>
 
-        <div className="flex justify-between font-semibold text-orange-600">
+        <div className="flex justify-between font-semibold text-primary-hover">
           <span>المتبقي</span>
           <span>{formatCurrency(remaining)} جنيه</span>
         </div>
@@ -152,7 +152,7 @@ function MemberRenewalForm({ member, onClose }) {
         <textarea
           rows={4}
           placeholder="اكتب أي ملاحظات..."
-          className="w-full resize-none rounded-lg border border-stone-300 px-3 py-2 outline-none focus:border-orange-500"
+          className="w-full resize-none rounded-lg border border-border bg-surface px-3 py-2 text-foreground outline-none placeholder:text-muted focus:border-primary"
           {...register("notes")}
         />
       </div>

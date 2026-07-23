@@ -44,21 +44,21 @@ function PayRemainingForm({ member, onClose }) {
     <form
       dir="rtl"
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto w-full max-w-2xl space-y-6 px-1.5 py-3.5"
+      className="mx-auto w-full max-w-2xl space-y-6 px-1.5 py-3.5 text-foreground"
     >
       {/* Header */}
-      <div className="border-b pb-4">
-        <h2 className="text-2xl font-bold text-gray-800">دفع باقي الاشتراك</h2>
+      <div className="border-b border-border pb-4">
+        <h2 className="text-2xl font-bold text-foreground">دفع باقي الاشتراك</h2>
 
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-muted">
           قم بإدخال المبلغ الذي قام اللاعب بسداده.
         </p>
       </div>
 
       {/* Member Information */}
-      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <div className="border-b bg-gray-50 px-6 py-4">
-          <h3 className="font-semibold text-gray-700">بيانات اللاعب</h3>
+      <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+        <div className="border-b border-border bg-background px-6 py-4">
+          <h3 className="font-semibold text-foreground">بيانات اللاعب</h3>
         </div>
 
         <div className="px-6">
@@ -100,7 +100,7 @@ function PayRemainingForm({ member, onClose }) {
 
       {/* Payment */}
       <div className="space-y-2">
-        <label className="block text-sm font-semibold text-gray-700">
+        <label className="block text-sm font-semibold text-foreground">
           المبلغ المدفوع
         </label>
 
@@ -109,7 +109,7 @@ function PayRemainingForm({ member, onClose }) {
           min={1}
           max={member.remaining_amount}
           placeholder="أدخل المبلغ"
-          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-lg transition-all duration-200 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+          className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-lg text-foreground transition-all duration-200 outline-none placeholder:text-muted focus:border-primary focus:ring-4 focus:ring-primary/15"
           {...register("paid_amount", {
             required: "يرجى إدخال المبلغ",
 
@@ -132,9 +132,9 @@ function PayRemainingForm({ member, onClose }) {
       </div>
 
       {/* Remaining */}
-      <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
+      <div className="rounded-2xl border border-primary/20 bg-primary/10 p-5">
         <div className="flex items-center justify-between">
-          <span className="font-medium text-gray-600">المتبقي بعد الدفع</span>
+          <span className="font-medium text-muted">المتبقي بعد الدفع</span>
 
           <span className="text-2xl font-bold text-blue-600">
             {formatCurrency(remainingAfterPayment)} جنيه
@@ -143,7 +143,7 @@ function PayRemainingForm({ member, onClose }) {
       </div>
 
       {/* Buttons */}
-      <div className="flex items-center justify-end gap-3 border-t pt-5">
+      <div className="flex items-center justify-end gap-3 border-t border-border pt-5">
         <Button type="button" design="secondary" onClick={onClose}>
           إلغاء
         </Button>
@@ -158,12 +158,12 @@ function Row({ label, value, border = true }) {
   return (
     <div
       className={`flex items-center justify-between py-4 ${
-        border ? "border-b border-gray-100" : ""
+        border ? "border-b border-border" : ""
       }`}
     >
-      <span className="font-medium text-gray-500">{label}</span>
+      <span className="font-medium text-muted">{label}</span>
 
-      <div className="font-semibold text-gray-800">{value}</div>
+      <div className="font-semibold text-foreground">{value}</div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ function Settings() {
     <>
       <div className="flex flex-col gap-1.5">
         <h3 className="text-xl font-bold sm:text-2xl">الإعدادات</h3>
-        <p className="text-sm font-semibold text-stone-500 sm:text-[16px]">
+        <p className="text-sm font-semibold text-muted sm:text-[16px]">
           {" "}
           إعدادات النظام والصالة
         </p>

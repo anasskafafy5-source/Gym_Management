@@ -1,8 +1,50 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ===========================
-   Theme
+   Theme tokens
 =========================== */
+
+:root {
+  /* Base */
+  --theme-background: #eeeeee;
+  --theme-surface: #ffffff;
+
+  /* Content */
+  --theme-text: #1f2937;
+  --theme-text-muted: #6b7280;
+  --theme-border: #e5e7eb;
+
+  /* Brand */
+  --theme-primary: #f97316;
+  --theme-primary-hover: #ea580c;
+}
+
+.dark {
+  /* Base */
+  --theme-background: #0f172a;
+  --theme-surface: #1e293b;
+
+  /* Content */
+  --theme-text: #f8fafc;
+  --theme-text-muted: #94a3b8;
+  --theme-border: #334155;
+
+  /* Brand */
+  --theme-primary: #f97316;
+  --theme-primary-hover: #ea580c;
+}
+
+@theme inline {
+  --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
+  --color-foreground: var(--theme-text);
+  --color-muted: var(--theme-text-muted);
+  --color-border: var(--theme-border);
+  --color-primary: var(--theme-primary);
+  --color-primary-hover: var(--theme-primary-hover);
+}
 
 @theme {
   --font-main: "IBM Plex Sans Arabic", sans-serif;
@@ -38,11 +80,11 @@ body {
 =========================== */
 
 .react-datepicker {
-  @apply overflow-hidden rounded-2xl border-0 shadow-xl;
+  @apply overflow-hidden rounded-2xl border-0 bg-surface text-foreground shadow-xl;
 }
 
 .react-datepicker__header {
-  @apply border-b-0 bg-orange-500;
+  @apply border-b-0 bg-primary;
 }
 
 .react-datepicker__current-month,
@@ -52,11 +94,23 @@ body {
 
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-  @apply rounded-full bg-orange-500 text-white;
+  @apply rounded-full bg-primary text-white;
+}
+
+.react-datepicker__month {
+  @apply bg-surface;
+}
+
+.react-datepicker__day:not(.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected) {
+  @apply text-foreground;
 }
 
 .react-datepicker__day:hover {
-  @apply rounded-full bg-orange-200;
+  @apply rounded-full bg-primary/15;
+}
+
+.react-datepicker__day--disabled {
+  @apply text-muted;
 }
 
 .react-datepicker__navigation-icon::before {

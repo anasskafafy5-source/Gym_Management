@@ -17,7 +17,7 @@ function MemberOperations() {
         />
       </div>
 
-      <div className="rounded-xl bg-white px-1.5 py-4">
+      <div className="rounded-xl bg-surface px-1.5 py-4">
         <Sort
           options={[
             {

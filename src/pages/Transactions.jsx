@@ -6,10 +6,10 @@ function Transactions() {
     <div>
       <PageHeader>
         <div>
-          <h3 className="text-[18px] font-bold text-black sm:text-xl">
+          <h3 className="text-[18px] font-bold text-foreground sm:text-xl">
             المعاملات المالية
           </h3>
-          <p className="mt-1 text-[14px] font-semibold text-stone-700 sm:text-[16px]">
+          <p className="mt-1 text-[14px] font-semibold text-muted sm:text-[16px]">
             دخل، مصروف، مرتبات، منتجات
           </p>
         </div>

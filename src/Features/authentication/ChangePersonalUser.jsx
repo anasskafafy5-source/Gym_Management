@@ -26,14 +26,14 @@ export default function ChangePersonalUser() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-lg space-y-6 text-right"
+      className="w-full max-w-lg space-y-6 text-right text-foreground"
     >
-      <h5 className="text-[17px] font-semibold text-orange-500">
+      <h5 className="text-[17px] font-semibold text-primary">
         تغير اسم المستخدم
       </h5>
       {/* Email */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           البريد الإلكتروني
         </label>
 
@@ -41,13 +41,13 @@ export default function ChangePersonalUser() {
           type="email"
           value={email}
           disabled
-          className="w-full cursor-not-allowed rounded-lg border border-gray-200 bg-gray-100 px-4 py-2 text-gray-500 outline-none"
+          className="w-full cursor-not-allowed rounded-lg border border-border bg-background px-4 py-2 text-muted outline-none"
         />
       </div>
 
       {/* Full Name */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           اسم المستخدم
         </label>
 
@@ -55,7 +55,7 @@ export default function ChangePersonalUser() {
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 transition outline-none focus:border-orange-500"
+          className="w-full rounded-lg border border-border bg-surface px-4 py-2 text-foreground transition outline-none placeholder:text-muted focus:border-primary"
           placeholder="اسم المستخدم"
         />
       </div>
@@ -66,7 +66,7 @@ export default function ChangePersonalUser() {
           design="secondary"
           type="button"
           onClick={handleCancel}
-          className="rounded-lg border border-gray-300 px-5 py-2 font-medium text-gray-700 transition hover:bg-gray-100"
+          className="rounded-lg border border-border px-5 py-2 font-medium text-foreground transition hover:bg-background"
         >
           إلغاء
         </Button>
@@ -74,7 +74,7 @@ export default function ChangePersonalUser() {
         <Button
           disabled={isLoading || isPending}
           type="submit"
-          className="rounded-lg bg-orange-500 px-5 py-2 font-medium text-white transition hover:bg-orange-600"
+          className="rounded-lg bg-primary px-5 py-2 font-medium text-white transition hover:bg-primary-hover"
         >
           حفظ التعديلات
         </Button>

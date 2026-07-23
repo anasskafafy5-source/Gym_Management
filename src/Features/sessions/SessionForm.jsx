@@ -35,16 +35,16 @@ function SessionForm({ onClose, captains = [], defaultPrice }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5 rounded-xl bg-white p-5 shadow-sm"
+      className="space-y-5 rounded-xl bg-surface p-5 text-foreground shadow-sm"
     >
       {/* Member */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           اسم العضو
         </label>
 
-        <div className="flex items-center gap-3 rounded-lg border bg-gray-50 px-4 py-3">
-          <FaUser className="text-gray-500" />
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3">
+          <FaUser className="text-muted" />
 
           <input
             type="text"
@@ -52,7 +52,7 @@ function SessionForm({ onClose, captains = [], defaultPrice }) {
             {...register("member_name", {
               required: "يرجى إدخال اسم العضو",
             })}
-            className="w-full bg-transparent outline-none"
+            className="w-full bg-transparent text-foreground outline-none placeholder:text-muted"
           />
         </div>
 
@@ -65,23 +65,23 @@ function SessionForm({ onClose, captains = [], defaultPrice }) {
 
       {/* Captain */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           الكابتن
         </label>
 
-        <div className="flex items-center gap-3 rounded-lg border px-4 py-3">
-          <FaUserTie className="text-gray-500" />
+        <div className="flex items-center gap-3 rounded-lg border border-border px-4 py-3">
+          <FaUserTie className="text-muted" />
 
           <select
             {...register("captain_id", {
               required: "اختر الكابتن",
             })}
-            className="w-full bg-transparent outline-none"
+            className="w-full bg-background text-foreground outline-none p-2 rounded-xs"
           >
             <option value="">اختر الكابتن</option>
 
             {captains.map((captain) => (
-              <option key={captain.id} value={captain.id}>
+              <option className="bg-background hover:bg-surface" key={captain.id} value={captain.id}>
                 {captain.full_name}
               </option>
             ))}
@@ -97,12 +97,12 @@ function SessionForm({ onClose, captains = [], defaultPrice }) {
 
       {/* Price */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           المبلغ المدفوع
         </label>
 
-        <div className="flex items-center gap-3 rounded-lg border px-4 py-3">
-          <FaMoneyBillWave className="text-gray-500" />
+        <div className="flex items-center gap-3 rounded-lg border border-border px-4 py-3">
+          <FaMoneyBillWave className="text-muted" />
 
           <input
             type="number"
@@ -115,12 +115,12 @@ function SessionForm({ onClose, captains = [], defaultPrice }) {
                 message: "السعر غير صالح",
               },
             })}
-            className="w-full outline-none"
+            className="w-full bg-transparent text-foreground outline-none placeholder:text-muted"
           />
         </div>
 
         {price < defaultPrice && (
-          <p className="mt-2 rounded-md bg-yellow-50 p-2 text-sm text-yellow-700">
+          <p className="mt-2 rounded-md bg-yellow-50 p-2 text-sm text-yellow-700 dark:bg-yellow-500/15 dark:text-yellow-300">
             ⚠️ المبلغ أقل من السعر الافتراضي للجيم.
           </p>
         )}
