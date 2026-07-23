@@ -5,7 +5,7 @@ function BackButton() {
   const navigate = useNavigate();
   return (
     <button
-      className="block cursor-pointer rounded-[3px] p-1.5 text-xl text-stone-700 duration-300 hover:bg-white hover:text-orange-500"
+      className="block cursor-pointer rounded-[3px] p-1.5 text-xl text-stone-700 duration-300 hover:bg-surface hover:primary-hover"
       onClick={() => navigate(-1)}
     >
       <FaAngleRight />

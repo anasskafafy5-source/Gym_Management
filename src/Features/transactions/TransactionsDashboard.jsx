@@ -4,6 +4,7 @@ import TransactionStatsCon from "./TransactionStatsCon";
 function TransactionsDashboard() {
   return (
     <div className="my-5">
+      <div className="bg-surface px-1.5 py-2 rounded-2xl w-fit mb-7">
       <Filter
         defaultValue={["period", "30"]}
         nameFilter="period"
@@ -24,6 +25,7 @@ function TransactionsDashboard() {
           },
         ]}
       />
+      </div>
       <TransactionStatsCon />
     </div>
   );

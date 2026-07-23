@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 const STORAGE_KEY = "velora-theme";
 const SYSTEM_THEME_QUERY = "(prefers-color-scheme: dark)";
@@ -58,14 +58,18 @@ function ThemeProvider({ children }) {
     };
   }, [theme]);
 
-  function setTheme(nextTheme) {
-    if (!VALID_THEMES.includes(nextTheme)) return;
+  const setTheme = useCallback((nextTheme) => {
+  if (!VALID_THEMES.includes(nextTheme)) return;
 
-    setThemeState(nextTheme);
-  }
+  setThemeState(nextTheme);
+}, []);
+
+  const contextValues = useMemo(() => {
+    return {theme , resolvedTheme , setTheme}
+  } , [theme , resolvedTheme , setTheme])
 
   return (
-    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>
+    <ThemeContext.Provider value={contextValues}>
       {children}
     </ThemeContext.Provider>
   );

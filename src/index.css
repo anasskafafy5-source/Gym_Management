@@ -76,6 +76,21 @@ body {
 }
 
 /* ===========================
+   React Hot Toast
+=========================== */
+
+.velora-toast {
+  transition:
+    background-color 200ms,
+    color 200ms,
+    border-color 200ms;
+}
+
+.velora-toast:hover {
+  border-color: var(--theme-primary-hover) !important;
+}
+
+/* ===========================
    React DatePicker
 =========================== */
 

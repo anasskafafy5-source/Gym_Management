@@ -39,7 +39,7 @@ function MembersTable({membersViews , loading , error}) {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-border">
             {membersViews.map((member, index) => (
               <MemberRow key={member.id} member={member} index={index} />
             ))}

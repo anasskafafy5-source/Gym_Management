@@ -65,32 +65,33 @@ function App() {
         }}
         toastOptions={{
           duration: 3000,
+          className: "velora-toast",
           style: {
-            background: "#fff",
-            color: "#1f2937",
-            border: "1px solid #fed7aa",
+            background: "var(--theme-surface)",
+            color: "var(--theme-text)",
+            border: "1px solid var(--theme-border)",
             borderRadius: "14px",
             padding: "14px 18px",
             fontSize: "15px",
             fontWeight: "500",
             direction: "rtl",
-            boxShadow: "0 10px 30px rgba(249,115,22,0.15)",
+            boxShadow: "0 10px 30px color-mix(in srgb, var(--theme-primary) 15%, transparent)",
           },
 
           success: {
             iconTheme: {
-              primary: "#f97316",
-              secondary: "#fff",
+              primary: "var(--theme-primary)",
+              secondary: "var(--theme-surface)",
             },
             style: {
-              borderLeft: "5px solid #f97316",
+              borderLeft: "5px solid var(--theme-primary)",
             },
           },
 
           error: {
             iconTheme: {
               primary: "#ef4444",
-              secondary: "#fff",
+              secondary: "var(--theme-surface)",
             },
             style: {
               borderLeft: "5px solid #ef4444",
@@ -99,8 +100,8 @@ function App() {
 
           loading: {
             iconTheme: {
-              primary: "#f97316",
-              secondary: "#fff",
+              primary: "var(--theme-primary)",
+              secondary: "var(--theme-surface)",
             },
           },
         }}
